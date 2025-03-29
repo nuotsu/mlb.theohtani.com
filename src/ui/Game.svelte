@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { fetchMLB } from '@/lib/mlb'
+	import { fetchMLB, fetchMLBLive } from '@/lib/mlb'
 
 	const { endpoint }: { endpoint: string } = $props()
 
 	type DetailedState = MLB.GameStatus['detailedState']
 
-	const isInProgress = (detailedState: DetailedState) =>
+	const isActive = (detailedState: DetailedState) =>
 		(['In Progress', 'Manager challenge', 'Umpire review'] as DetailedState[]).includes(
 			detailedState,
 		)
 </script>
 
-{#await fetchMLB<MLB.LiveData>(endpoint)}
+{#await fetchMLBLive<MLB.LiveData>(endpoint)}
 	<div>Loading game...</div>
 {:then { gameData, liveData }}
 	{@const { detailedState } = gameData.status}
@@ -23,7 +23,7 @@
 		{gameData.teams.home.abbreviation}
 		({detailedState})
 
-		{#if isInProgress(detailedState) && liveData.plays.currentPlay.result.description}
+		{#if isActive(detailedState) && liveData.plays.currentPlay.result.description}
 			<!-- svelte-ignore a11y_distracting_elements -->
 			<marquee>
 				{liveData.plays.currentPlay.result.description}
@@ -31,8 +31,7 @@
 		{/if}
 	</div>
 
-	{#if gameData.teams.home.abbreviation === 'LAD'}
+	<!-- {#if gameData.teams.home.abbreviation === 'LAD'}
 		{$inspect(liveData)}
-		<!-- <pre>{JSON.stringify(liveData, null, 2)}</pre> -->
-	{/if}
+	{/if} -->
 {/await}
