@@ -9,7 +9,7 @@ declare global {
 
 		interface PartialDateTime {
 			officialDate: string // US date of the event as YYYY-MM-DD
-			dayNight: string // 'day' or 'night'
+			dayNight: 'day' | 'night'
 		}
 
 		interface IdentifiableObject {
