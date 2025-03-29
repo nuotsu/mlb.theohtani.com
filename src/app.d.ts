@@ -11,19 +11,31 @@ declare global {
 
 	namespace MLB {
 		interface Schedule {
-			dates:
-				| {
-						date: string
-						games: {
-							dayNight: 'day' | 'night'
-							gameDate: string
-							link: string
-						}[]
-						totalGames: number
-						totalGamesInProgress: number
-				  }[]
-				| []
+			dates: {
+				date: string
+				games: {
+					dayNight: 'day' | 'night'
+					gameDate: string
+					link: string
+				}[]
+				totalGames: number
+				totalGamesInProgress: number
+			}[]
 			totalGames: number
+		}
+
+		interface Game {
+			gameData: {
+				teams: {
+					away: Team
+					home: Team
+				}
+			}
+			liveData: {}
+		}
+
+		interface Team {
+			abbreviation: string
 		}
 	}
 }

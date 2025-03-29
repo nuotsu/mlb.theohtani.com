@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fetchSchedule } from '@/lib/mlb'
+	import Game from '@/ui/Game.svelte'
 
 	let date = $state(
 		new Date().toLocaleDateString('en-CA', {
@@ -20,12 +21,10 @@
 	{#if schedule.totalGames > 0}
 		{@const { games } = schedule?.dates?.[0]}
 
-		<ul>
-			{#each games as game}
-				<li>{game.link}</li>
-			{/each}
-		</ul>
+		{#each games as game}
+			<Game endpoint={game.link} />
+		{/each}
 	{:else}
-		<p>No games found</p>
+		<div>No games found</div>
 	{/if}
 {/await}
