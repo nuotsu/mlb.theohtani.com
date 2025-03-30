@@ -60,8 +60,11 @@ declare global {
 				| 'Umpire review'
 				| 'Manager challenge'
 				| 'Manager challenge: Tag play'
-				| 'Final'
 				| 'Game Over'
+				| 'Final'
+				| 'Final: Tied'
+				| 'Cancelled'
+				| 'Completed Early'
 			statusCode: string // first char of detailedState
 			codedGameState: GameStatus['statusCode'] // dupe of statusCode
 			startTimeTBD: boolean

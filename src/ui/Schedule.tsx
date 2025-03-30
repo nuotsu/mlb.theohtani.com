@@ -10,11 +10,15 @@ export default function Schedule() {
 		`/api/v1/schedule?sportId=1&startDate=${date}&endDate=${date}`,
 	)
 
-	if (isLoading) return <div>Loading...</div>
+	if (isLoading) return <div>Loading games...</div>
 
 	const games = data?.dates?.[0]?.games
 
 	if (!games) return <div>No games</div>
 
-	return <>{games?.map((game, key) => <Game game={game} key={key} />)}</>
+	return (
+		<section className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-1">
+			{games?.map((game, key) => <Game game={game} index={key} key={key} />)}
+		</section>
+	)
 }

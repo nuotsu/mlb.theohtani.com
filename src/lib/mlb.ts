@@ -9,5 +9,7 @@ export async function fetchMLB<T = any>(endpoint: string) {
 }
 
 export function fetchMLBLive<T = any>(endpoint: string) {
-	return useSWR<T>(endpoint, fetchMLB)
+	return useSWR<T>(endpoint, fetchMLB, {
+		refreshInterval: 1000 * 3, // seconds
+	})
 }
