@@ -6,6 +6,8 @@ export default function Date() {
 	const { date, setDate } = useStore()
 
 	return (
-		<input className="w-full" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+		<label>
+			<input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+		</label>
 	)
 }

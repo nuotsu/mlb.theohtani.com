@@ -23,11 +23,14 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 	return (
 		<>
 			<article
-				className={cn('bg-canvas @container grid border text-center', {
-					'-order-3': isActive(detailedState),
-					'-order-2': detailedState.startsWith('Delayed'),
-					'-order-1': isScheduled(detailedState),
-				})}
+				className={cn(
+					'bg-canvas has-[[data-scoring]]:animate-scoring @container grid border text-center',
+					{
+						'-order-3': isActive(detailedState),
+						'-order-2': detailedState.startsWith('Delayed'),
+						'-order-1': isScheduled(detailedState),
+					},
+				)}
 			>
 				<div className="flex">
 					<TeamScore data={data} side="away" />

@@ -10,9 +10,9 @@ export default function CurrentInning({ linescore }: { linescore: MLB.LiveLineSc
 			title={`${inningState} of the ${currentInningOrdinal}`}
 		>
 			<span className="grid text-[xx-small] *:transition-opacity">
-				<VscTriangleUp className={cn('opacity-25', inningState === 'Top' && 'opacity-100')} />
+				<VscTriangleUp className={cn('text-stroke/50', inningState === 'Top' && 'text-ink')} />
 				<VscTriangleDown
-					className={cn('mt-[-3px] opacity-25', inningState === 'Bottom' && 'opacity-100')}
+					className={cn('text-stroke/50 mt-[-3px]', inningState === 'Bottom' && 'text-ink')}
 				/>
 			</span>
 

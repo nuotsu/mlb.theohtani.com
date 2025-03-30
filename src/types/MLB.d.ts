@@ -727,7 +727,7 @@ declare global {
 			currentInning: number // int
 			currentInningOrdinal: string // above as an ordinal, i.e. "1st"
 			isTopInning: boolean
-			inningState: 'Top' | 'Middle' | 'Bottom'
+			inningState: 'Top' | 'Middle' | 'Bottom' | 'End'
 			inningHalf: 'Top' | 'Bottom'
 			scheduledInnings: number
 			innings: Inning[]

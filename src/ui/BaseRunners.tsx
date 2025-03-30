@@ -14,6 +14,8 @@ export default function BaseRunners({ linescore }: { linescore: MLB.LiveLineScor
 		.map((key) => runnerKeys[key])
 		.filter(Number.isInteger)
 
+	const interlude = ['Middle', 'End'].includes(inningState)
+
 	return (
 		<div className="grid translate-y-0.5 rotate-45 grid-cols-2 gap-0.5">
 			{[1, 0, 2].map((i) => {
@@ -22,9 +24,14 @@ export default function BaseRunners({ linescore }: { linescore: MLB.LiveLineScor
 
 				return (
 					<span
-						className={cn('size-2 bg-current opacity-25 transition-opacity', {
-							'opacity-100': inningState !== 'Middle' && runners.includes(i),
-						})}
+						className={cn(
+							'size-2 transition-opacity',
+							interlude
+								? 'bg-stroke/50'
+								: runners.includes(i)
+									? 'bg-current'
+									: 'border-stroke border',
+						)}
 						title={runner ? `${runner.fullName} on ${base}` : undefined}
 						key={i}
 					/>

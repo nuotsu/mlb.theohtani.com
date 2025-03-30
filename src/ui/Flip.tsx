@@ -9,7 +9,7 @@ export default function Flip({
 
 	return (
 		<div className="overflow-hidden" key={children?.toString()}>
-			<span className="anim-fade-to-t inline-block" {...props}>
+			<span className="anim-fade-to-t inline-block duration-200" {...props}>
 				{children}
 			</span>
 		</div>

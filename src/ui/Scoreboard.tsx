@@ -17,7 +17,7 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 						<td className="bg-canvas sticky left-0" />
 
 						{Array.from({ length: Math.max(9, currentInning) }).map((_, i) => (
-							<td className="text-ink/50 min-w-[2ch]" key={i}>
+							<td className="text-stroke min-w-[2ch]" key={i}>
 								{i + 1}
 							</td>
 						))}
