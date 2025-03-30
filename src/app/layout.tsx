@@ -17,7 +17,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="bg-canvas text-ink">
-				<main>{children}</main>
+				<main className="pb-[env(safe-area-inset-bottom)]">{children}</main>
 			</body>
 		</html>
 	)

@@ -1,4 +1,5 @@
-import { isActive } from '@/lib/game-status'
+import { isActive, isScheduled } from '@/lib/game-status'
+import Abbreviation from './Abbreviation'
 import Flip from './Flip'
 
 export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'home' | 'away' }) {
@@ -8,10 +9,8 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 
 	return (
 		<div className="grid w-[4ch] shrink-0">
-			<abbr className="no-underline" title={gameData.teams[side].name}>
-				{gameData.teams[side].abbreviation}
-			</abbr>
-			<Flip disable={!isActive(detailedState)}>{runs}</Flip>
+			<Abbreviation team={gameData.teams[side]} />
+			{!isScheduled(detailedState) && <Flip disable={!isActive(detailedState)}>{runs}</Flip>}
 		</div>
 	)
 }

@@ -6,7 +6,7 @@ export default function BallsStrikes({ linescore }: { linescore: MLB.LiveLineSco
 
 	return (
 		<div
-			className="flex w-full justify-center tabular-nums"
+			className="flex justify-center tabular-nums"
 			title={`${count(balls, 'ball')}, ${count(strikes, 'strike')}`}
 		>
 			<Flip>{balls}</Flip>-<Flip>{strikes}</Flip>

@@ -56,6 +56,7 @@ declare global {
 				| 'Scheduled'
 				| 'Warmup'
 				| 'Pre-Game'
+				| 'Delayed'
 				| 'In Progress'
 				| 'Umpire review'
 				| 'Manager challenge'
