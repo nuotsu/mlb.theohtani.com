@@ -4,6 +4,9 @@ import '@/styles/app.css'
 export const metadata: Metadata = {
 	title: 'MLB Score Bug',
 	description: '',
+	icons: {
+		icon: 'https://fav.farm/⚾',
+	},
 }
 
 export default function RootLayout({

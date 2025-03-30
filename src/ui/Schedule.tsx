@@ -18,7 +18,7 @@ export default function Schedule() {
 
 	return (
 		<section className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-1">
-			{games?.map((game, key) => <Game game={game} index={key} key={key} />)}
+			{games?.map((game, key) => <Game game={game} key={key} />)}
 		</section>
 	)
 }

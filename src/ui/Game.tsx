@@ -4,11 +4,11 @@ import { isActive, isFinal, isScheduled } from '@/lib/game-status'
 import CurrentInning from './CurrentInning'
 import BaseRunners from './BaseRunners'
 import OutCount from './OutCount'
-import Flip from './Flip'
+import BallsStrikes from './BallsStrikes'
 import CurrentPlay from './CurrentPlay'
 import { cn } from '@/lib/utils'
 
-export default function Game({ game, index }: { game: MLB.ScheduleGame; index: number }) {
+export default function Game({ game }: { game: MLB.ScheduleGame }) {
 	const { data, isLoading } = fetchMLBLive<MLB.LiveData>(game.link)
 
 	if (isLoading) return <div>Loading game...</div>
@@ -40,10 +40,7 @@ export default function Game({ game, index }: { game: MLB.ScheduleGame; index: n
 								<CurrentInning linescore={liveData.linescore} />
 								<BaseRunners linescore={liveData.linescore} />
 								<OutCount linescore={liveData.linescore} />
-								<div className="flex w-full justify-center tabular-nums">
-									<Flip title="Balls">{liveData.linescore.balls}</Flip>-
-									<Flip title="Strikes">{liveData.linescore.strikes}</Flip>
-								</div>
+								<BallsStrikes linescore={liveData.linescore} />
 
 								{isActive(detailedState) && (
 									<CurrentPlay play={liveData.plays.currentPlay.result.description} />
