@@ -1,17 +1,16 @@
-import type { ComponentProps } from 'react'
+import { cn } from '@/lib/utils'
 
 export default function Flip({
 	disable,
 	children,
+	className,
 	...props
-}: { disable?: boolean } & ComponentProps<'span'>) {
+}: { disable?: boolean } & React.HTMLAttributes<HTMLDivElement>) {
 	if (disable) return <span {...props}>{children}</span>
 
 	return (
-		<div className="overflow-hidden" key={children?.toString()}>
-			<span className="anim-fade-to-t inline-block duration-200" {...props}>
-				{children}
-			</span>
+		<div className={cn('overflow-hidden', className)} key={children?.toString()} {...props}>
+			<span className="anim-fade-to-t inline-block duration-200">{children}</span>
 		</div>
 	)
 }

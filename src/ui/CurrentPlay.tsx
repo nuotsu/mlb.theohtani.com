@@ -6,10 +6,11 @@ export default function CurrentPlay({ play }: { play: string }) {
 	return (
 		// @ts-ignore
 		<marquee
-			className="overflow-fade absolute inset-x-0 bottom-0 text-xs"
+			className="overflow-fade from-canvas to-tran absolute inset-x-0 bottom-0 bg-linear-to-t text-xs"
 			data-scoring={scoring}
-			key={play}
+			title={play}
 			children={play}
+			key={play}
 		/>
 	)
 }

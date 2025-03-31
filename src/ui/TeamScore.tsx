@@ -8,9 +8,13 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 	const { runs } = liveData.linescore.teams[side]
 
 	return (
-		<div className="grid w-[4ch] shrink-0">
+		<div className="flex w-[4ch] shrink-0 flex-col">
 			<Abbreviation team={gameData.teams[side]} />
-			{!isScheduled(detailedState) && <Flip disable={!isActive(detailedState)}>{runs}</Flip>}
+			{!isScheduled(detailedState) && (
+				<div className="m-auto text-lg font-bold">
+					<Flip disable={!isActive(detailedState)}>{runs}</Flip>
+				</div>
+			)}
 		</div>
 	)
 }

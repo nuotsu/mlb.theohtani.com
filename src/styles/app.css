@@ -7,10 +7,6 @@
 }
 
 @layer base {
-	body {
-		accent-color: var(--color-ink);
-	}
-
 	label {
 		cursor: pointer;
 	}

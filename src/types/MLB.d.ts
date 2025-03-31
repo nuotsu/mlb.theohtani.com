@@ -264,6 +264,7 @@ declare global {
 		}
 
 		interface BattingStats {
+			summary: string
 			flyOuts: number // int
 			groundOuts: number // int
 			runs: number // int

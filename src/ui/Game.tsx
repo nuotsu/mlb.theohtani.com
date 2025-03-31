@@ -7,15 +7,14 @@ import BaseRunners from './BaseRunners'
 import OutCount from './OutCount'
 import BallsStrikes from './BallsStrikes'
 import CurrentPlay from './CurrentPlay'
+import Matchup from './Matchup'
 import Scoreboard from './Scoreboard'
 import { cn } from '@/lib/utils'
 
 export default function Game({ game }: { game: MLB.ScheduleGame }) {
 	const { options } = useStore()
-	const { data, isLoading } = fetchMLBLive<MLB.LiveData>(game.link)
-
-	if (isLoading) return <div>Loading game...</div>
-	if (!data) return <div>No data</div>
+	const { data } = fetchMLBLive<MLB.LiveData>(game.link)
+	if (!data) return null
 
 	const { gameData, liveData } = data
 	const { detailedState } = gameData.status
@@ -32,32 +31,35 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					},
 				)}
 			>
-				<div className="flex">
+				<div className="flex items-stretch">
 					<TeamScore data={data} side="away" />
 					<TeamScore data={data} side="home" />
-					<div className="relative grid grow place-content-center leading-tight">
-						{isScheduled(detailedState) && (
-							<>
-								{gameData.datetime.time} {gameData.datetime.ampm}
-							</>
-						)}
 
-						{detailedState.startsWith('Delayed') && <span>{detailedState}</span>}
-
+					<div className="grid grow leading-tight">
 						{isActive(detailedState) && (
-							<div className="flex flex-wrap items-center justify-center gap-x-3">
-								<CurrentInning linescore={liveData.linescore} />
-								<BaseRunners linescore={liveData.linescore} />
-								<OutCount linescore={liveData.linescore} />
-								<BallsStrikes linescore={liveData.linescore} />
-
-								{isActive(detailedState) && (
-									<CurrentPlay play={liveData.plays.currentPlay.result.description} />
-								)}
+							<div>
+								<div className="relative flex flex-wrap items-center justify-center gap-x-3 py-2">
+									<CurrentInning linescore={liveData.linescore} />
+									<BaseRunners linescore={liveData.linescore} />
+									<OutCount linescore={liveData.linescore} />
+									<BallsStrikes liveData={liveData} />
+									{isActive(detailedState) && (
+										<CurrentPlay play={liveData.plays.currentPlay.result.description} />
+									)}
+								</div>
+								<Matchup liveData={liveData} />
 							</div>
 						)}
 
-						{isFinal(detailedState) && <span>{detailedState}</span>}
+						{isScheduled(detailedState) && (
+							<span className="m-auto">
+								{gameData.datetime.time} {gameData.datetime.ampm}
+							</span>
+						)}
+
+						{(isFinal(detailedState) || detailedState.startsWith('Delayed')) && (
+							<span className="m-auto">{detailedState}</span>
+						)}
 					</div>
 				</div>
 
