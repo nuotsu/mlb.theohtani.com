@@ -16,7 +16,7 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 				alt=""
 			/>
 
-			<Abbreviation team={team} />
+			<Abbreviation className="m-auto" team={team} />
 
 			{!isScheduled(detailedState) && (
 				<div className="m-auto text-lg font-bold">

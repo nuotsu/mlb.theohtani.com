@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWR, { SWRConfiguration } from 'swr'
 
 const BASE_URL = 'https://statsapi.mlb.com'
 
@@ -8,8 +8,11 @@ export async function fetchMLB<T = any>(endpoint: string) {
 	return res.json() as Promise<T>
 }
 
-export function fetchMLBLive<T = any>(endpoint: string) {
+export function fetchMLBLive<T = any>(endpoint?: string, options?: SWRConfiguration) {
+	if (!endpoint) return { data: null, isLoading: false }
+
 	return useSWR<T>(endpoint, fetchMLB, {
 		refreshInterval: 1000 * 3, // seconds
+		...options,
 	})
 }

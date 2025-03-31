@@ -298,6 +298,8 @@ declare global {
 		}
 
 		interface PitchingStats extends PlayCount {
+			gamesPlayed: number // int
+			gamesStarted: number // int
 			groundOuts: number // int
 			airOuts: number // int
 			runs: number // int
@@ -310,36 +312,53 @@ declare global {
 			hits: number // int
 			hitByPitch: number // int
 			atBats: number // int
+			obp: string // 0-1 float as a string; can be ".---" if unavailable
+			slg: string // 0-1 float as a string; can be ".---" if unavailable
+			ops: string // 0-1 float as a string; can be ".---" if unavailable
 			caughtStealing: number // int
 			stolenBases: number // int
+			stolenBasePercentage: string // 0-1 float as a string; can be ".---" if unavailable
+			groundIntoDoublePlay: number // int
 			numberOfPitches: number // int
+			era: string // float; can be "-.--" if unavailable
+			inningsPitched: string // float; can be "-.--" if unavailable
+			wins: number // int
+			losses: number // int
+			saves: number // int
 			saveOpportunities: number // int
+			holds: number // int
+			blownSaves: number // int
 			earnedRuns: number // int
+			whip: string // float; can be "-.--" if unavailable
 			battersFaced: number // int
+			outs: number // int
+			gamesPitched: number // int
 			completeGames: number // int
 			shutouts: number // int
-			pitchesThrown: number // int
+			strikes: number // int
+			strikePercentage: string // 0-1 float as a string; can be ".---" if unavailable
 			hitBatsmen: number // int
 			balks: number // int
 			wildPitches: number // int
 			pickoffs: number // int
-			rbi: number // int
+			totalBases: number // int
+			groundOutsToAirouts: string // float; can be "-.--" if unavailable
+			winPercentage: string // 0-1 float as a string; can be ".---" if unavailable
+			pitchesPerInning: string // float; can be "-.--" if unavailable
+			gamesFinished: number // int
+			strikeoutWalkRatio: string // float; can be "-.--" if unavailable
+			strikeoutsPer9Inn: string // float; can be "-.--" if unavailable
+			hitsPer9Inn: string // float; can be "-.--" if unavailable
+			runsScoredPer9: string // float; can be "-.--" if unavailable
+			homeRunsPer9: string // float; can be "-.--" if unavailable
 			inheritedRunners: number // int
 			inheritedRunnersScored: number // int
 			catchersInterference: number // int
 			sacBunts: number // int
 			sacFlies: number // int
+			pitchesThrown: number // int
+			rbi: number // int
 			passedBall: number // int
-			obp: string // 0-1 float as a string; can be ".---" if unavailable
-			stolenBasePercentage: string // 0-1 float as a string; can be ".---" if unavailable
-			era: string // float; can be "-.--" if unavailable
-			inningsPitched: string // float; can be "-.--" if unavailable
-			whip: string // float; can be "-.--" if unavailable
-			strikePercentage: string // 0-1 float as a string; can be ".---" if unavailable
-			groundOutsToAirouts: string // float; can be "-.--" if unavailable
-			pitchesPerInning: string // float; can be "-.--" if unavailable
-			runsScoredPer9: string // float; can be "-.--" if unavailable
-			homeRunsPer9: string // float; can be "-.--" if unavailable
 		}
 
 		interface FieldingStats {

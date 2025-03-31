@@ -8,6 +8,7 @@ import OutCount from './OutCount'
 import BallsStrikes from './BallsStrikes'
 import CurrentPlay from './CurrentPlay'
 import Matchup from './Matchup'
+import Scheduled from './Scheduled'
 import Scoreboard from './Scoreboard'
 import { cn } from '@/lib/utils'
 
@@ -51,14 +52,10 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 							</div>
 						)}
 
-						{isScheduled(detailedState) && (
-							<span className="m-auto">
-								{gameData.datetime.time} {gameData.datetime.ampm}
-							</span>
-						)}
+						{isScheduled(detailedState) && <Scheduled gameData={gameData} />}
 
 						{(isFinal(detailedState) || detailedState.startsWith('Delayed')) && (
-							<span className="m-auto">{detailedState}</span>
+							<div className="m-auto p-1">{detailedState}</div>
 						)}
 					</div>
 				</div>
