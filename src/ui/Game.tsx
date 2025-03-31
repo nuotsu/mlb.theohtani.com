@@ -23,7 +23,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 		<>
 			<article
 				className={cn(
-					'bg-canvas has-[[data-scoring]]:animate-scoring @container grid border text-center',
+					'bg-canvas has-[[data-scoring]]:animate-scoring @container grid overflow-hidden border text-center',
 					{
 						'-order-3': isActive(detailedState),
 						'-order-2': detailedState.startsWith('Delayed'),
@@ -31,7 +31,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					},
 				)}
 			>
-				<div className="flex items-stretch">
+				<div className="relative z-1 flex items-stretch">
 					<TeamScore data={data} side="away" />
 					<TeamScore data={data} side="home" />
 
