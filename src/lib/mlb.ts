@@ -16,3 +16,35 @@ export function fetchMLBLive<T = any>(endpoint?: string, options?: SWRConfigurat
 		...options,
 	})
 }
+
+export function fetchPlayer<T = MLB.PitchingStats | MLB.BattingStats>(
+	player: MLB.BasicPlayerData | undefined,
+	group?: 'pitching' | 'hitting' | 'pitching,hitting',
+	year?: string,
+) {
+	const { data, ...rest } = fetchMLBLive<{
+		people: MLB.PlayerStat[]
+	}>(
+		player?.link &&
+			[player.link, group && `?hydrate=stats(group=[${group}],type=[yearByYear])`]
+				.filter(Boolean)
+				.join(''),
+		{
+			refreshInterval: 1000 * 60,
+		},
+	)
+
+	return {
+		data: data?.people[0],
+		stat: getStat<T>(data?.people[0], year),
+		...rest,
+	}
+}
+
+export function getStat<T = MLB.PitchingStats | MLB.BattingStats>(
+	data: MLB.PlayerStat | undefined,
+	year?: string,
+) {
+	if (!year) return undefined
+	return data?.stats?.[0].splits.find((split) => split.season === year)?.stat as T
+}

@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils'
+import MiniPlayer from './MiniPlayer'
 import Flip from './Flip'
+import { cn } from '@/lib/utils'
 
 export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 	const { linescore, boxscore } = liveData
@@ -23,29 +24,33 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 		<div
 			className={cn('grid pr-1 text-left text-xs transition-opacity', interlude && 'opacity-30')}
 		>
-			<div className="anim-fade-to-r flex items-center gap-1" title="Pitcher" key={pitcher.id}>
-				<small className="text-canvas bg-ink grid aspect-square size-[1lh] place-content-center">
-					P
-				</small>
-				<span className="grow">{pitcher.fullName}</span>
+			<MiniPlayer
+				label="P"
+				className="anim-fade-to-r [&_dt]:text-canvas [&_dt]:bg-ink"
+				player={pitcher}
+				title="Pitcher"
+				key={pitcher.id}
+			>
 				{pitcherStats && (
 					<span className="flex">
 						P:<Flip>{pitcherStats.numberOfPitches}</Flip>
 					</span>
 				)}
-			</div>
+			</MiniPlayer>
 
-			<div className="anim-fade-to-r flex items-center gap-1" title="Batter" key={batter.id}>
-				<small className="bg-stroke grid aspect-square size-[1lh] place-content-center">
-					{battingOrder}
-				</small>
-				<span className="shrink-0 grow">{batter.fullName}</span>
+			<MiniPlayer
+				label={battingOrder}
+				className="anim-fade-to-r [&_dt]:bg-stroke"
+				player={batter}
+				title="Batter"
+				key={batter.id}
+			>
 				{batterStats && (
 					<span className="line-clamp-1" title={batterStats.summary}>
 						{batterStats.summary}
 					</span>
 				)}
-			</div>
+			</MiniPlayer>
 		</div>
 	)
 }

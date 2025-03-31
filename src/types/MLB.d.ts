@@ -122,6 +122,10 @@ declare global {
 			strikeZoneBottom: number // float
 		}
 
+		interface PlayerStat extends Player {
+			stats: MLB.StatEntry<MLB.PlayerStatSplit>[]
+		}
+
 		interface PrimaryPosition {
 			code: string
 			name: string
@@ -247,8 +251,8 @@ declare global {
 		}
 
 		interface ProbablePitchers {
-			away: NameableObject
-			home: NameableObject
+			away: BasicPlayerData
+			home: BasicPlayerData
 		}
 
 		interface DisplayNameObject {
@@ -774,20 +778,20 @@ declare global {
 		}
 
 		interface LineScoreTeam {
-			pitcher: NameableObject
-			catcher: NameableObject
-			first: NameableObject
-			second: NameableObject
-			third: NameableObject
-			shortstop: NameableObject
-			left: NameableObject
-			center: NameableObject
-			right: NameableObject
-			batter: NameableObject
-			onDeck: NameableObject
-			inHole: NameableObject
+			pitcher: BasicPlayerData
+			catcher: BasicPlayerData
+			first: BasicPlayerData
+			second: BasicPlayerData
+			third: BasicPlayerData
+			shortstop: BasicPlayerData
+			left: BasicPlayerData
+			center: BasicPlayerData
+			right: BasicPlayerData
+			batter: BasicPlayerData
+			onDeck: BasicPlayerData
+			inHole: BasicPlayerData
 			battingOrder: number // int
-			team: NameableObject
+			team: BasicTeamData
 		}
 
 		interface LiveBoxScore {

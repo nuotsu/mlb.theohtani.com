@@ -9,6 +9,7 @@ import BallsStrikes from './BallsStrikes'
 import CurrentPlay from './CurrentPlay'
 import Matchup from './Matchup'
 import Scheduled from './Scheduled'
+import Final from './Final'
 import Scoreboard from './Scoreboard'
 import { cn } from '@/lib/utils'
 
@@ -18,13 +19,13 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 	if (!data) return null
 
 	const { gameData, liveData } = data
-	const { detailedState } = gameData.status
+	const { detailedState, abstractGameState } = gameData.status
 
 	return (
 		<>
 			<article
 				className={cn(
-					'bg-canvas has-[[data-scoring]]:animate-scoring @container grid overflow-hidden border text-center',
+					'bg-canvas has-[[data-scoring]]:animate-scoring anim-fade @container grid overflow-hidden border text-center',
 					{
 						'-order-3': isActive(detailedState),
 						'-order-2': detailedState.startsWith('Delayed'),
@@ -54,9 +55,11 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 
 						{isScheduled(detailedState) && <Scheduled gameData={gameData} />}
 
-						{(isFinal(detailedState) || detailedState.startsWith('Delayed')) && (
+						{detailedState.startsWith('Delayed') && (
 							<div className="m-auto p-1">{detailedState}</div>
 						)}
+
+						{abstractGameState === 'Final' && <Final data={data} />}
 					</div>
 				</div>
 

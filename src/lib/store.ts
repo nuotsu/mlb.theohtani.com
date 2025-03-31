@@ -1,5 +1,10 @@
 import { create } from 'zustand'
 
+type Options = {
+	showScoreboard: boolean
+	showColors: boolean
+}
+
 export const useStore = create<{
 	date: string
 	setDate: (date: string) => void
@@ -16,10 +21,7 @@ export const useStore = create<{
 
 	options: {
 		showScoreboard: false,
+		showColors: false,
 	},
 	setOptions: (options) => set({ options }),
 }))
-
-type Options = {
-	showScoreboard: boolean
-}

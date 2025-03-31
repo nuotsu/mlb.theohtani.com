@@ -9,14 +9,25 @@ export default function Options() {
 		<fieldset>
 			<legend>Options</legend>
 
-			<label>
-				<input
-					type="checkbox"
-					checked={options.showScoreboard}
-					onChange={() => setOptions({ showScoreboard: !options.showScoreboard })}
-				/>
-				Show scoreboard
-			</label>
+			<div className="flex flex-wrap gap-x-2 gap-y-1">
+				<label>
+					<input
+						type="checkbox"
+						checked={options.showScoreboard}
+						onChange={() => setOptions({ ...options, showScoreboard: !options.showScoreboard })}
+					/>
+					Show scoreboard
+				</label>
+
+				<label>
+					<input
+						type="checkbox"
+						checked={options.showColors}
+						onChange={() => setOptions({ ...options, showColors: !options.showColors })}
+					/>
+					Show colors
+				</label>
+			</div>
 		</fieldset>
 	)
 }
