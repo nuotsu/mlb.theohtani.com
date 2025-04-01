@@ -2,7 +2,7 @@
 
 import { useStore } from '@/lib/store'
 
-export default function Options() {
+export default function GlobalOptions() {
 	const { options, setOptions } = useStore()
 
 	return (

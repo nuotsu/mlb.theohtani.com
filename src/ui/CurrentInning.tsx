@@ -6,10 +6,10 @@ export default function CurrentInning({ linescore }: { linescore: MLB.LiveLineSc
 
 	return (
 		<div
-			className="flex items-center justify-center"
+			className="flex items-center justify-center gap-0.5"
 			title={`${inningState} of the ${currentInningOrdinal}`}
 		>
-			<span className="grid text-[xx-small] *:transition-opacity">
+			<span className="grid text-[.5em] *:transition-opacity">
 				<VscTriangleUp className={cn('text-stroke/50', inningState === 'Top' && 'text-ink')} />
 				<VscTriangleDown
 					className={cn('text-stroke/50 mt-[-3px]', inningState === 'Bottom' && 'text-ink')}

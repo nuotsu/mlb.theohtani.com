@@ -6,7 +6,11 @@
 	--color-stroke: var(--color-neutral-500);
 }
 
-@variant no-spoiler (.group\/game:has([name='spoiler']:checked) &);
+@variant has-no-spoiler (&:has([name='no-spoiler']:checked));
+@variant no-spoiler (.group\/game:has([name='no-spoiler']:checked) &);
+
+@variant has-highlighted (&:has([name='highlight']:checked));
+@variant highlighted (.group\/game:has([name='highlight']:checked) &);
 
 @layer base {
 	label,
@@ -56,9 +60,7 @@
 }
 
 @utility animate-scoring {
-	&:not(:has([name='spoiler']:checked)) {
-		animation: scoring 2s ease-in-out infinite;
-	}
+	animation: scoring 2s ease-in-out infinite;
 }
 
 @keyframes scoring {

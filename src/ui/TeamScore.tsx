@@ -13,7 +13,7 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 	const { runs } = liveData.linescore.teams[side]
 
 	return (
-		<div className="group/team relative flex w-[4ch] shrink-0 flex-col">
+		<div className="group/team highlighted:sm:text-xl highlighted:sm:w-[5ch] relative flex w-[4ch] shrink-0 flex-col">
 			<img
 				className={cn(
 					'anim-fade pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-50 mix-blend-saturation blur saturate-200 transition-opacity',
@@ -29,7 +29,10 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 			/>
 
 			{!isScheduled(detailedState) && (
-				<div className="no-spoiler:hidden m-auto text-lg font-bold" data-score>
+				<div
+					className="no-spoiler:hidden highlighted:sm:text-3xl m-auto text-lg font-bold"
+					data-score
+				>
 					<Flip disable={!isActive(detailedState)}>{runs}</Flip>
 				</div>
 			)}

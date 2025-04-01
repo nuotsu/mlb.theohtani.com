@@ -22,8 +22,8 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 		<>
 			<article
 				className={cn(
-					'group/game bg-canvas has-[[data-scoring]]:animate-scoring anim-fade @container flex flex-col overflow-hidden border text-center transition-colors',
-					'has-[[name=spoiler]:checked]:border-stroke has-[[name=spoiler]:checked]:justify-evenly',
+					'group/game bg-canvas anim-fade @container relative flex flex-col justify-evenly overflow-hidden border text-center transition-colors',
+					'has-[[data-scoring]]:animate-scoring has-highlighted:order-first has-highlighted:col-span-full has-no-spoiler:border-stroke!',
 					{
 						'-order-3': isActive(detailedState),
 						'-order-2': detailedState.startsWith('Delayed'),

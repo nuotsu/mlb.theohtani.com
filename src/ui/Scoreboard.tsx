@@ -8,11 +8,11 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 	return (
 		<div
 			className={cn(
-				'no-spoiler:hidden',
+				'no-spoiler:hidden mt-auto',
 				innings.length > 10 && '@max-xs:overflow-fade-r overflow-x-auto @max-xs:pr-[1ch]',
 			)}
 		>
-			<table className="w-auto max-w-none min-w-full table-fixed text-xs whitespace-nowrap">
+			<table className="highlighted:sm:text-lg w-auto max-w-none min-w-full table-fixed text-xs whitespace-nowrap">
 				<thead>
 					<tr>
 						<td className="bg-canvas sticky left-0" />
@@ -62,7 +62,7 @@ function Row({
 				<Abbreviation className="block w-full border-r" team={gameData.teams[side]} />
 
 				{isActive(detailedState) && offense && (
-					<span className="absolute top-1/2 left-0 grid size-[5px] -translate-1/2 rotate-45 bg-current" />
+					<span className="absolute top-1/2 left-0 grid size-[0.4em] -translate-1/2 rotate-45 bg-current" />
 				)}
 			</th>
 

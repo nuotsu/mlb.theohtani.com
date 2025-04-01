@@ -1,6 +1,6 @@
 import Date from '@/ui/Date'
 import Icon from '@/ui/Icon'
-import Options from '@/ui/Options'
+import GlobalOptions from '@/ui/GlobalOptions'
 import Schedule from '@/ui/Schedule'
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
 				<h1>MLB Score Bug</h1>
 			</header>
 			<Date />
-			<Options />
+			<GlobalOptions />
 			<Schedule />
 		</>
 	)

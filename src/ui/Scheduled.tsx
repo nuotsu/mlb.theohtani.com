@@ -13,7 +13,7 @@ export default function Scheduled({ data }: { data: MLB.LiveData }) {
 	return (
 		<div
 			className={cn(
-				'my-auto',
+				'highlighted:sm:text-lg my-auto',
 				!isScheduled(detailedState) && 'hidden',
 				!isFinal(detailedState) && 'no-spoiler:block',
 			)}
@@ -22,11 +22,12 @@ export default function Scheduled({ data }: { data: MLB.LiveData }) {
 				{new Date(datetime.dateTime).toLocaleTimeString('en-US', {
 					hour: 'numeric',
 					minute: '2-digit',
+					timeZoneName: 'short',
 				})}
 			</p>
 
 			{(probablePitchers.away || probablePitchers.home) && (
-				<div className="grid grid-cols-[1fr_auto_1fr] items-start gap-1 text-xs leading-tight">
+				<div className="highlighted:sm:text-lg grid grid-cols-[1fr_auto_1fr] items-start gap-1 text-xs leading-tight">
 					<ProbalePitcher pitcher={probablePitchers.away} year={year} />
 					vs
 					<ProbalePitcher pitcher={probablePitchers.home} year={year} />
@@ -43,7 +44,7 @@ function ProbalePitcher({ pitcher, year }: { pitcher?: MLB.BasicPlayerData; year
 		<dl className={cn('grow', !pitcher && 'text-stroke')} title={pitcher?.fullName}>
 			<dt>{data?.lastName || pitcher?.fullName || 'TBD'}</dt>
 			{stat && (
-				<dd className="text-stroke text-[xx-small]">
+				<dd className="text-stroke text-[0.75em]">
 					{stat.wins}-{stat.losses} | {stat.era} ERA
 				</dd>
 			)}

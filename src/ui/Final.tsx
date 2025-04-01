@@ -1,6 +1,7 @@
 import { useStore } from '@/lib/store'
 import { fetchPlayer } from '@/lib/mlb'
 import MiniPlayer from './MiniPlayer'
+import { count } from '@/lib/utils'
 
 export default function Final({ data }: { data: MLB.LiveData }) {
 	const { detailedState } = data.gameData.status
@@ -46,10 +47,14 @@ export default function Final({ data }: { data: MLB.LiveData }) {
 
 function WL({ player, year }: { player: MLB.BasicPlayerData; year: string }) {
 	const { stat } = fetchPlayer<MLB.PitchingStats>(player, 'pitching', year)
+	const { wins, losses } = stat ?? {}
 
 	return (
-		<span className="text-stroke">
-			({stat?.wins}-{stat?.losses})
+		<span
+			className="text-stroke"
+			title={[count(wins, 'win'), count(losses, 'loss', 'losses')].filter(Boolean).join(', ')}
+		>
+			({wins}-{losses})
 		</span>
 	)
 }

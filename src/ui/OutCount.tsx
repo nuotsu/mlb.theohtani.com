@@ -10,7 +10,7 @@ export default function OutCount({ linescore }: { linescore: MLB.LiveLineScore }
 			{Array.from({ length: 3 }).map((_, i) => (
 				<span
 					className={cn(
-						'inline-block size-1.5 rounded-full transition-opacity',
+						'inline-block size-[.4em] rounded-full transition-opacity',
 						interlude ? 'bg-stroke/50' : i >= outs ? 'border-stroke border' : 'bg-current',
 					)}
 					key={i}

@@ -10,7 +10,7 @@ export default function DiamondStatus({ data }: { data: MLB.LiveData }) {
 	const { detailedState } = data.gameData.status
 
 	return (
-		<div className="no-spoiler:hidden relative flex flex-wrap items-center justify-center gap-x-3 py-2">
+		<div className="no-spoiler:hidden highlighted:sm:text-2xl relative flex flex-wrap items-center justify-center gap-x-[.75em] py-2">
 			<CurrentInning linescore={liveData.linescore} />
 			<BaseRunners linescore={liveData.linescore} />
 			<OutCount linescore={liveData.linescore} />
