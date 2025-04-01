@@ -1,4 +1,4 @@
-import { isFinal } from '@/lib/game-status'
+import { isActive, isFinal } from '@/lib/game-status'
 import Abbreviation from './Abbreviation'
 import { cn } from '@/lib/utils'
 
@@ -8,6 +8,7 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 	return (
 		<div
 			className={cn(
+				'no-spoiler:hidden',
 				innings.length > 10 && '@max-xs:overflow-fade-r overflow-x-auto @max-xs:pr-[1ch]',
 			)}
 		>
@@ -50,13 +51,19 @@ function Row({
 	liveData: MLB.LiveMatchData
 	side: 'away' | 'home'
 }) {
-	const { innings } = liveData?.linescore
+	const { innings, inningState } = liveData?.linescore
 	const { detailedState } = gameData.status
+	const offense =
+		(inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home')
 
 	return (
 		<tr>
 			<th className="bg-canvas sticky left-0 min-w-[4ch] font-normal">
 				<Abbreviation className="block w-full border-r" team={gameData.teams[side]} />
+
+				{isActive(detailedState) && offense && (
+					<span className="absolute top-1/2 left-0 grid size-[5px] -translate-1/2 rotate-45 bg-current" />
+				)}
 			</th>
 
 			{Array.from({ length: Math.max(9, innings.length) }).map((_, i) => {

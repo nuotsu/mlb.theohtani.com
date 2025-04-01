@@ -2,15 +2,12 @@ import { useStore } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/mlb'
 import TeamScore from './TeamScore'
 import { isActive, isFinal, isScheduled } from '@/lib/game-status'
-import CurrentInning from './CurrentInning'
-import BaseRunners from './BaseRunners'
-import OutCount from './OutCount'
-import BallsStrikes from './BallsStrikes'
-import CurrentPlay from './CurrentPlay'
+import DiamondStatus from './DiamondStatus'
 import Matchup from './Matchup'
 import Scheduled from './Scheduled'
 import Final from './Final'
 import Scoreboard from './Scoreboard'
+import GameOptions from './GameOptions'
 import { cn } from '@/lib/utils'
 
 export default function Game({ game }: { game: MLB.ScheduleGame }) {
@@ -25,7 +22,8 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 		<>
 			<article
 				className={cn(
-					'bg-canvas has-[[data-scoring]]:animate-scoring anim-fade @container grid overflow-hidden border text-center',
+					'group/game bg-canvas has-[[data-scoring]]:animate-scoring anim-fade @container flex flex-col overflow-hidden border text-center transition-colors',
+					'has-[[name=spoiler]:checked]:border-stroke has-[[name=spoiler]:checked]:justify-evenly',
 					{
 						'-order-3': isActive(detailedState),
 						'-order-2': detailedState.startsWith('Delayed'),
@@ -39,21 +37,13 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 
 					<div className="grid grow leading-tight">
 						{isActive(detailedState) && (
-							<div>
-								<div className="relative flex flex-wrap items-center justify-center gap-x-3 py-2">
-									<CurrentInning linescore={liveData.linescore} />
-									<BaseRunners linescore={liveData.linescore} />
-									<OutCount linescore={liveData.linescore} />
-									<BallsStrikes liveData={liveData} />
-									{isActive(detailedState) && (
-										<CurrentPlay play={liveData.plays.currentPlay.result.description} />
-									)}
-								</div>
+							<>
+								<DiamondStatus data={data} />
 								<Matchup liveData={liveData} />
-							</div>
+							</>
 						)}
 
-						{isScheduled(detailedState) && <Scheduled gameData={gameData} />}
+						<Scheduled data={data} />
 
 						{detailedState.startsWith('Delayed') && (
 							<div className="m-auto p-1">{detailedState}</div>
@@ -66,6 +56,8 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 				{(isActive(detailedState) || isFinal(detailedState)) &&
 					detailedState !== 'Cancelled' &&
 					options.showScoreboard && <Scoreboard data={data} />}
+
+				<GameOptions />
 			</article>
 
 			{isActive(detailedState) && (

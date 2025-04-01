@@ -22,7 +22,10 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 
 	return (
 		<div
-			className={cn('grid pr-1 text-left text-xs transition-opacity', interlude && 'opacity-30')}
+			className={cn(
+				'no-spoiler:hidden grid pr-1 text-left text-xs transition-opacity',
+				interlude && 'opacity-30',
+			)}
 		>
 			<MiniPlayer
 				label="P"

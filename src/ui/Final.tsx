@@ -13,19 +13,29 @@ export default function Final({ data }: { data: MLB.LiveData }) {
 		<div className="flex flex-col">
 			<p className="my-auto">{detailedState}</p>
 
-			<dl className="flex flex-wrap gap-x-1 text-xs *:grow *:basis-[calc(50%-0.5rem)] [&_dd]:grow-0">
+			<dl className="no-spoiler:hidden gap-x-1 text-xs @xs:columns-2 [&_dd]:grow-0">
 				{winner && (
-					<MiniPlayer className="[&_dt]:text-canvas [&_dt]:bg-ink" label="W" player={winner}>
+					<MiniPlayer
+						className="[&_dt]:text-canvas [&_dt]:bg-ink"
+						label="W"
+						player={winner}
+						nameType="lastName"
+					>
 						<WL player={winner} year={year} />
 					</MiniPlayer>
 				)}
 
 				{save && (
-					<MiniPlayer className="[&_dt]:text-canvas [&_dt]:bg-ink" label="SV" player={save} />
+					<MiniPlayer
+						className="[&_dt]:text-canvas [&_dt]:bg-ink"
+						label="SV"
+						player={save}
+						nameType="lastName"
+					/>
 				)}
 
 				{loser && (
-					<MiniPlayer className="[&_dt]:bg-stroke" label="L" player={loser}>
+					<MiniPlayer className="[&_dt]:bg-stroke" label="L" player={loser} nameType="lastName">
 						<WL player={loser} year={year} />
 					</MiniPlayer>
 				)}

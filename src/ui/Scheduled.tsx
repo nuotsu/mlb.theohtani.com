@@ -1,15 +1,23 @@
-import { fetchPlayer, getStat } from '@/lib/mlb'
+import { isFinal, isScheduled } from '@/lib/game-status'
+import { fetchPlayer } from '@/lib/mlb'
 import { useStore } from '@/lib/store'
 import { cn } from '@/lib/utils'
 
-export default function Scheduled({ gameData }: { gameData: MLB.LiveGame }) {
-	const { datetime, probablePitchers } = gameData
+export default function Scheduled({ data }: { data: MLB.LiveData }) {
+	const { datetime, probablePitchers } = data.gameData
+	const { detailedState } = data.gameData.status
 
 	const { date } = useStore()
 	const year = new Date(date).getFullYear().toString()
 
 	return (
-		<div className="my-auto">
+		<div
+			className={cn(
+				'my-auto',
+				!isScheduled(detailedState) && 'hidden',
+				!isFinal(detailedState) && 'no-spoiler:block',
+			)}
+		>
 			<p>
 				{new Date(datetime.dateTime).toLocaleTimeString('en-US', {
 					hour: 'numeric',

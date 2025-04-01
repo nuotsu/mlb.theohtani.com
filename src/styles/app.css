@@ -6,9 +6,16 @@
 	--color-stroke: var(--color-neutral-500);
 }
 
+@variant no-spoiler (.group\/game:has([name='spoiler']:checked) &);
+
 @layer base {
-	label {
+	label,
+	summary {
 		cursor: pointer;
+	}
+
+	::-webkit-details-marker {
+		display: none;
 	}
 
 	abbr {
@@ -49,7 +56,9 @@
 }
 
 @utility animate-scoring {
-	animation: scoring 2s ease-in-out infinite;
+	&:not(:has([name='spoiler']:checked)) {
+		animation: scoring 2s ease-in-out infinite;
+	}
 }
 
 @keyframes scoring {

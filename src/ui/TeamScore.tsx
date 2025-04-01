@@ -23,10 +23,13 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 				alt=""
 			/>
 
-			<Abbreviation className={cn(isScheduled(detailedState) && 'my-auto')} team={team} />
+			<Abbreviation
+				className={cn('no-spoiler:my-auto', isScheduled(detailedState) && 'my-auto')}
+				team={team}
+			/>
 
 			{!isScheduled(detailedState) && (
-				<div className="m-auto text-lg font-bold" data-score>
+				<div className="no-spoiler:hidden m-auto text-lg font-bold" data-score>
 					<Flip disable={!isActive(detailedState)}>{runs}</Flip>
 				</div>
 			)}
