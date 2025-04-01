@@ -11,7 +11,10 @@ export default function Scheduled({ gameData }: { gameData: MLB.LiveGame }) {
 	return (
 		<div className="my-auto">
 			<p>
-				{datetime.time} {datetime.ampm}
+				{new Date(datetime.dateTime).toLocaleTimeString('en-US', {
+					hour: 'numeric',
+					minute: '2-digit',
+				})}
 			</p>
 
 			{(probablePitchers.away || probablePitchers.home) && (
