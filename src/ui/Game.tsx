@@ -23,7 +23,8 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 			<article
 				className={cn(
 					'group/game bg-canvas anim-fade @container relative flex flex-col justify-evenly overflow-hidden border text-center transition-colors',
-					'has-[[data-scoring]]:animate-scoring has-highlighted:order-first has-highlighted:col-span-full has-no-spoiler:border-stroke!',
+					'has-[[data-scoring]]:animate-scoring has-highlighted:order-first has-highlighted:col-span-full',
+					'has-no-spoiler:border-stroke! has-no-spoiler:outline-none!',
 					{
 						'-order-3': isActive(detailedState),
 						'-order-2': detailedState.startsWith('Delayed'),
@@ -31,7 +32,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					},
 				)}
 			>
-				<div className="relative z-1 flex items-stretch">
+				<div className="relative z-1 flex grow items-stretch">
 					<TeamScore data={data} side="away" />
 					<TeamScore data={data} side="home" />
 
@@ -63,7 +64,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 			{isActive(detailedState) && (
 				<hr
 					data-active
-					className="border-stroke -order-2 col-span-full my-4 data-[active]:not-first-of-type:hidden"
+					className="border-stroke -order-2 col-span-full my-4 border-dashed data-[active]:not-first-of-type:hidden"
 				/>
 			)}
 
@@ -71,7 +72,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 				(isScheduled(detailedState) && (
 					<hr
 						data-scheduled
-						className="border-stroke -order-1 col-span-full my-4 hidden data-[scheduled]:not-last-of-type:hidden [[data-active]~&]:block"
+						className="border-stroke -order-1 col-span-full my-4 hidden border-dashed data-[scheduled]:not-last-of-type:hidden [[data-active]~&]:block"
 					/>
 				))}
 		</>

@@ -67,9 +67,11 @@
 	0%,
 	100% {
 		border-color: var(--color-amber-600);
+		outline: 2px solid var(--color-amber-600);
 	}
 	50% {
 		border-color: var(--color-amber-100);
+		outline: 2px solid var(--color-amber-100);
 	}
 }
 

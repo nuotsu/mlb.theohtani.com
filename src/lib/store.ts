@@ -21,7 +21,7 @@ export const useStore = create<{
 
 	options: {
 		showScoreboard: false,
-		showColors: false,
+		showColors: true,
 	},
 	setOptions: (options) => set({ options }),
 }))

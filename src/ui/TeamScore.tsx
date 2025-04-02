@@ -2,6 +2,7 @@ import { useStore } from '@/lib/store'
 import { isActive, isScheduled } from '@/lib/game-status'
 import Abbreviation from './Abbreviation'
 import Flip from './Flip'
+import { WLRecord } from '@/lib/mlb'
 import { cn } from '@/lib/utils'
 
 export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'home' | 'away' }) {
@@ -11,22 +12,41 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 	const { detailedState } = gameData.status
 	const team = gameData.teams[side]
 	const { runs } = liveData.linescore.teams[side]
+	const { wins, losses } = team.record
 
 	return (
-		<div className="group/team highlighted:sm:text-xl highlighted:sm:w-[5ch] relative flex w-[4ch] shrink-0 flex-col">
-			<img
-				className={cn(
-					'anim-fade pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-50 mix-blend-saturation blur saturate-200 transition-opacity',
-					!options.showColors && 'opacity-0',
-				)}
-				src={`https://midfield.mlbstatic.com/v1/team/${team.id}/spots/24`}
-				alt=""
-			/>
+		<div className="group/team highlighted:sm:text-xl highlighted:sm:w-[6ch] highlighted:lg:w-[10ch] relative flex w-[4ch] shrink-0 flex-col overflow-hidden">
+			{options.showColors && (
+				<figure className="overflow-hidden" title={team.name}>
+					<img
+						className={cn('anim-fade-to-b aspect-[3] w-full scale-110 object-cover')}
+						src={`https://midfield.mlbstatic.com/v1/team/${team.id}/spots/288`}
+						draggable={false}
+						alt=""
+					/>
+				</figure>
+			)}
 
-			<Abbreviation
-				className={cn('no-spoiler:my-auto', isScheduled(detailedState) && 'my-auto')}
-				team={team}
-			/>
+			<div
+				className={cn(
+					'highlighted:lg:flex no-spoiler:grow relative grid items-center justify-center gap-x-2',
+					options.showColors && 'grow',
+					isScheduled(detailedState) && 'my-auto',
+				)}
+			>
+				<Abbreviation className="not-highlighted:m-auto" team={team} />
+
+				<small
+					className={cn(
+						'text-stroke anim-fade-to-r bg-canvas absolute inset-0 place-content-center group-[:not(:hover)]/team:hidden',
+						'highlighted:lg:static highlighted:lg:block',
+						'no-spoiler:hidden!',
+					)}
+					title={WLRecord({ wins, losses })}
+				>
+					{wins}-{losses}
+				</small>
+			</div>
 
 			{!isScheduled(detailedState) && (
 				<div
