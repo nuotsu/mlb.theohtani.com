@@ -1,5 +1,12 @@
+import { Chakra_Petch as Font } from 'next/font/google'
 import type { Metadata } from 'next'
 import '@/styles/app.css'
+import { cn } from '@/lib/utils'
+
+const font = Font({
+	subsets: ['latin'],
+	weight: ['400', '700'],
+})
 
 export const metadata: Metadata = {
 	title: 'MLB Score Bug',
@@ -16,7 +23,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="bg-canvas text-ink">
+			<body className={cn(font.className, 'bg-canvas text-ink')}>
 				<main className="pb-[env(safe-area-inset-bottom)]">{children}</main>
 			</body>
 		</html>
