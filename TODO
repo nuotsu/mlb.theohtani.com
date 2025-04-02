@@ -1,4 +1,6 @@
 # TODO
 
+- scoreboard score flips (isActive && last one only?)
 - selected batter
   - up next in 4 batters, etc
+- selected player as tabs (for comparison)
