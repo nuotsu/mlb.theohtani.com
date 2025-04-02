@@ -1,5 +1,5 @@
 import { cn, count } from '@/lib/utils'
-import Flip from './Flip'
+import Flip from '@/ui/Flip'
 
 export default function BallsStrikes({ liveData }: { liveData: MLB.LiveMatchData }) {
 	const { balls, strikes } = liveData.plays.currentPlay.count

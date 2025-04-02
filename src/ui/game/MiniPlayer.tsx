@@ -1,4 +1,5 @@
 import { fetchPlayer } from '@/lib/mlb'
+import SelectablePlayer from '@/ui/SelectablePlayer'
 import { cn } from '@/lib/utils'
 import type { ComponentProps } from 'react'
 
@@ -29,7 +30,7 @@ export default function MiniPlayer({
 			</dt>
 
 			<dd className="grow text-left whitespace-nowrap" title={player?.fullName}>
-				{nameMap[nameType] || player?.fullName}
+				<SelectablePlayer player={player}>{nameMap[nameType] || player?.fullName}</SelectablePlayer>
 			</dd>
 
 			{children && <dd>{children}</dd>}

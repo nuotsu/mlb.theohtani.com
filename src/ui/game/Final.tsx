@@ -1,7 +1,6 @@
 import { useStore } from '@/lib/store'
-import { fetchPlayer, WLRecord } from '@/lib/mlb'
-import MiniPlayer from './MiniPlayer'
-import { count } from '@/lib/utils'
+import { fetchPlayer } from '@/lib/mlb'
+import MiniPlayer from '@/ui/game/MiniPlayer'
 
 export default function Final({ data }: { data: MLB.LiveData }) {
 	const { detailedState } = data.gameData.status
@@ -50,7 +49,7 @@ function WL({ player, year }: { player: MLB.BasicPlayerData; year: string }) {
 	const { wins, losses } = stat ?? {}
 
 	return (
-		<span className="text-stroke" title={WLRecord({ wins, losses })}>
+		<span className="text-stroke">
 			({wins}-{losses})
 		</span>
 	)

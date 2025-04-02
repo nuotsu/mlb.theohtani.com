@@ -1,5 +1,5 @@
 import { isActive, isFinal } from '@/lib/game-status'
-import Abbreviation from './Abbreviation'
+import Abbreviation from '@/ui/Abbreviation'
 import { cn } from '@/lib/utils'
 
 export default function Scoreboard({ data }: { data: MLB.LiveData }) {
@@ -22,15 +22,9 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 								{i + 1}
 							</td>
 						))}
-						<td className="min-w-[2ch]">
-							<abbr title="Runs">R</abbr>
-						</td>
-						<td className="min-w-[2ch]">
-							<abbr title="Hits">H</abbr>
-						</td>
-						<td className="min-w-[2ch]">
-							<abbr title="Errors">E</abbr>
-						</td>
+						<td className="min-w-[2ch]">R</td>
+						<td className="min-w-[2ch]">H</td>
+						<td className="min-w-[2ch]">E</td>
 					</tr>
 				</thead>
 				<tbody>

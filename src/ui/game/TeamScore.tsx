@@ -1,8 +1,7 @@
 import { useStore } from '@/lib/store'
 import { isActive, isScheduled } from '@/lib/game-status'
-import Abbreviation from './Abbreviation'
-import Flip from './Flip'
-import { WLRecord } from '@/lib/mlb'
+import Abbreviation from '@/ui/Abbreviation'
+import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'home' | 'away' }) {
@@ -42,7 +41,6 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 						'highlighted:lg:static highlighted:lg:block',
 						'no-spoiler:hidden!',
 					)}
-					title={WLRecord({ wins, losses })}
 				>
 					{wins}-{losses}
 				</small>

@@ -14,6 +14,7 @@
 
 @layer base {
 	label,
+	button,
 	summary {
 		cursor: pointer;
 	}

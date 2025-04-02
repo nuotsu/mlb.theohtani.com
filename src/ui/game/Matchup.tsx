@@ -1,5 +1,5 @@
-import MiniPlayer from './MiniPlayer'
-import Flip from './Flip'
+import MiniPlayer from '@/ui/game/MiniPlayer'
+import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
@@ -48,11 +48,7 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 				title="Batter"
 				key={batter.id}
 			>
-				{batterStats && (
-					<span className="line-clamp-1" title={batterStats.summary}>
-						{batterStats.summary}
-					</span>
-				)}
+				{batterStats && <span className="line-clamp-1">{batterStats.summary}</span>}
 			</MiniPlayer>
 		</div>
 	)

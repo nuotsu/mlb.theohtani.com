@@ -1,5 +1,5 @@
 import useSWR, { SWRConfiguration } from 'swr'
-import { count } from './utils'
+
 const BASE_URL = 'https://statsapi.mlb.com'
 
 export async function fetchMLB<T = any>(endpoint: string) {
@@ -47,8 +47,4 @@ export function getStat<T = MLB.PitchingStats | MLB.BattingStats>(
 ) {
 	if (!year) return undefined
 	return data?.stats?.[0].splits.find((split) => split.season === year)?.stat as T
-}
-
-export function WLRecord({ wins, losses }: { wins?: number; losses?: number }) {
-	return [count(wins, 'win'), count(losses, 'loss', 'losses')].filter(Boolean).join(', ')
 }
