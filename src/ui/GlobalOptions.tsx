@@ -7,9 +7,9 @@ export default function GlobalOptions() {
 
 	return (
 		<fieldset>
-			<legend>Options</legend>
+			<legend className="text-sm">Options</legend>
 
-			<div className="flex flex-wrap gap-x-2 gap-y-1">
+			<div className="flex flex-wrap gap-x-2">
 				<label>
 					<input
 						type="checkbox"

@@ -17,7 +17,7 @@ export default function BaseRunners({ linescore }: { linescore: MLB.LiveLineScor
 	const interlude = ['Middle', 'End'].includes(inningState)
 
 	return (
-		<div className="grid translate-y-0.5 rotate-45 grid-cols-2 gap-[.125em]">
+		<div className="relative z-1 grid translate-y-0.5 rotate-45 grid-cols-2 gap-[.125em]">
 			{[1, 0, 2].map((i) => {
 				const base = Object.keys(offense).find((key) => runnerKeys[key] === i)
 				const runner = offense[base as keyof typeof offense] as MLB.BasicPlayerData | undefined
