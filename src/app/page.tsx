@@ -1,7 +1,8 @@
-import Date from '@/ui/Date'
+import DatePicker from '@/ui/DatePicker'
 import Icon from '@/ui/Icon'
 import GlobalOptions from '@/ui/GlobalOptions'
 import Schedule from '@/ui/Schedule'
+import SelectedPlayers from '@/ui/SelectedPlayers'
 
 export default function Home() {
 	return (
@@ -10,9 +11,10 @@ export default function Home() {
 				<Icon />
 				<h1>MLB Score Bug</h1>
 			</header>
-			<Date />
+			<DatePicker />
 			<GlobalOptions />
 			<Schedule />
+			<SelectedPlayers />
 		</>
 	)
 }

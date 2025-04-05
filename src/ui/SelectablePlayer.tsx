@@ -11,5 +11,5 @@ export default function SelectablePlayer({
 
 	if (!player) return <span {...props} />
 
-	return <button onClick={() => addSelectedPlayer(player.id)} {...props} />
+	return <button onClick={() => addSelectedPlayer(player)} {...props} />
 }

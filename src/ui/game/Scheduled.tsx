@@ -1,6 +1,7 @@
+import { useStore } from '@/lib/store'
 import { isFinal, isScheduled } from '@/lib/game-status'
 import { fetchPlayer } from '@/lib/mlb'
-import { useStore } from '@/lib/store'
+import SelectablePlayer from '@/ui/SelectablePlayer'
 import { cn } from '@/lib/utils'
 
 export default function Scheduled({ data }: { data: MLB.LiveData }) {
@@ -42,7 +43,11 @@ function ProbalePitcher({ pitcher, year }: { pitcher?: MLB.BasicPlayerData; year
 
 	return (
 		<dl className={cn('grow', !pitcher && 'text-stroke')} title={pitcher?.fullName}>
-			<dt>{data?.lastName || pitcher?.fullName || 'TBD'}</dt>
+			<dt>
+				<SelectablePlayer player={pitcher}>
+					{data?.lastName || pitcher?.fullName || 'TBD'}
+				</SelectablePlayer>
+			</dt>
 			{stat && (
 				<dd className="text-stroke text-[0.75em]">
 					{stat.wins}-{stat.losses} | {stat.era} ERA
