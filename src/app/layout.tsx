@@ -24,7 +24,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cn(font.className, 'bg-canvas text-ink')}>
-				<main className="flex min-h-svh flex-col pb-[env(safe-area-inset-bottom)]">{children}</main>
+				<main className="flex min-h-svh flex-col gap-1 pb-[env(safe-area-inset-bottom)]">
+					{children}
+				</main>
 			</body>
 		</html>
 	)

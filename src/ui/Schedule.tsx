@@ -17,7 +17,7 @@ export default function Schedule() {
 	if (!games) return <div>No games</div>
 
 	return (
-		<section className="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-1">
+		<section className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-1">
 			{games?.map((game, key) => <Game game={game} key={key} />)}
 		</section>
 	)
