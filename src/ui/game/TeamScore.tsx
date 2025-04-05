@@ -1,17 +1,21 @@
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import { isActive, isScheduled } from '@/lib/game-status'
 import Abbreviation from '@/ui/Abbreviation'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'home' | 'away' }) {
-	const { options } = useStore()
+	const { options } = useLocalStorage()
 
 	const { gameData, liveData } = data
 	const { detailedState } = gameData.status
 	const team = gameData.teams[side]
 	const { runs } = liveData.linescore.teams[side]
 	const { wins, losses } = team.record
+
+	const { inningState } = liveData?.linescore
+	const offense =
+		(inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home')
 
 	return (
 		<div className="group/team highlighted:sm:text-xl highlighted:sm:w-[6ch] highlighted:lg:w-[10ch] relative flex w-[4ch] shrink-0 flex-col overflow-hidden">
@@ -33,7 +37,13 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 					isScheduled(detailedState) && 'my-auto',
 				)}
 			>
-				<Abbreviation className="not-highlighted:m-auto" team={team} />
+				<Abbreviation
+					className={cn(
+						'not-highlighted:m-auto',
+						isActive(detailedState) && offense && 'font-bold',
+					)}
+					team={team}
+				/>
 
 				<small
 					className={cn(

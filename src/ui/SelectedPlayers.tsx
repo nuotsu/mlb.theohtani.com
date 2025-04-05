@@ -1,13 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import PlayerDetails from './PlayerDetails'
 
 export default function SelectedPlayers() {
 	const ref = useRef<HTMLDivElement>(null)
 	const [scrollWidth, setScrollWidth] = useState(0)
-	const { selectedPlayers } = useStore()
+	const { selectedPlayers } = useLocalStorage()
 
 	useEffect(() => {
 		if (!ref.current) return

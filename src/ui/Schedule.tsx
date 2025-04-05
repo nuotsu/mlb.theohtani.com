@@ -1,11 +1,11 @@
 'use client'
 
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/mlb'
 import Game from './game/Game'
 
 export default function Schedule() {
-	const { date } = useStore()
+	const { date } = useLocalStorage()
 	const { data, isLoading } = fetchMLBLive<MLB.Schedule>(
 		`/api/v1/schedule?sportId=1&startDate=${date}&endDate=${date}`,
 	)

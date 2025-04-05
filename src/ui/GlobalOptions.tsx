@@ -1,9 +1,9 @@
 'use client'
 
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 
 export default function GlobalOptions() {
-	const { options, setOptions } = useStore()
+	const { options, setOptions } = useLocalStorage()
 
 	return (
 		<fieldset>

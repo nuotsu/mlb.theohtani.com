@@ -1,4 +1,4 @@
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import { fetchPlayer } from '@/lib/mlb'
 import MiniPlayer from '@/ui/game/MiniPlayer'
 
@@ -6,7 +6,7 @@ export default function Final({ data }: { data: MLB.LiveData }) {
 	const { detailedState } = data.gameData.status
 	const { winner, save, loser } = data.liveData.decisions ?? {}
 
-	const { date } = useStore()
+	const { date } = useLocalStorage()
 	const year = new Date(date).getFullYear().toString()
 
 	return (

@@ -1,4 +1,4 @@
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/mlb'
 import TeamScore from './TeamScore'
 import { isActive, isFinal, isScheduled } from '@/lib/game-status'
@@ -11,7 +11,7 @@ import GameOptions from './GameOptions'
 import { cn } from '@/lib/utils'
 
 export default function Game({ game }: { game: MLB.ScheduleGame }) {
-	const { options } = useStore()
+	const { options } = useLocalStorage()
 	const { data } = fetchMLBLive<MLB.LiveData>(game.link)
 	if (!data) return null
 
@@ -22,7 +22,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 		<>
 			<article
 				className={cn(
-					'group/game bg-canvas anim-fade @container relative flex flex-col justify-evenly overflow-hidden border text-center transition-colors',
+					'group/game bg-canvas anim-fade @container relative flex min-h-[2lh] flex-col justify-evenly overflow-hidden border text-center transition-colors',
 					'has-[[data-scoring]]:animate-scoring has-highlighted:order-first has-highlighted:col-span-full',
 					'has-no-spoiler:border-stroke! has-no-spoiler:outline-none!',
 					{
@@ -58,7 +58,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					detailedState !== 'Cancelled' &&
 					options.showScoreboard && <Scoreboard data={data} />}
 
-				<GameOptions />
+				<GameOptions teams={gameData.teams} />
 			</article>
 
 			{isActive(detailedState) && (

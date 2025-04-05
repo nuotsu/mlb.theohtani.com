@@ -1,10 +1,10 @@
 'use client'
 
 import { fetchPlayer } from '@/lib/mlb'
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 
 export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData }) {
-	const { removeSelectedPlayer } = useStore()
+	const { removeSelectedPlayer } = useLocalStorage()
 
 	const { data } = fetchPlayer(player, 'pitching,hitting', '2024')
 
@@ -18,23 +18,20 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 			<summary className="flex items-center gap-1 p-1 pr-0 group-not-open:pl-2">
 				<span className="group-open:hidden">{data?.lastName}</span>
 
-				<figure className="relative w-12 group-not-open:hidden">
+				<figure className="w-12 group-not-open:hidden">
 					<img
 						src={`https://midfield.mlbstatic.com/v1/people/${player.id}/spots/120`}
-						alt={player.fullName}
+						alt="	"
 						width={120}
 						height={120}
 					/>
-
-					<figcaption className="bg-ink text-canvas absolute bottom-0 left-0 grid size-[2.5ch] place-content-center text-[xx-small] font-bold">
-						{data?.primaryNumber}
-					</figcaption>
 				</figure>
 
-				<strong className="grow group-not-open:hidden">{player.fullName}</strong>
+				<strong className="leading-tight group-not-open:hidden">{player.fullName}</strong>
+				<span className="text-stroke text-sm">#{data?.primaryNumber}</span>
 
 				<button
-					className="grid aspect-square w-[2ch] place-content-center text-xl"
+					className="ml-auto grid aspect-square w-[2ch] place-content-center text-xl"
 					onClick={() => removeSelectedPlayer(player)}
 				>
 					&times;

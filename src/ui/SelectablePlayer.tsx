@@ -1,13 +1,13 @@
 'use client'
 
-import { useStore } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import type { ComponentProps } from 'react'
 
 export default function SelectablePlayer({
 	player,
 	...props
 }: { player?: MLB.BasicPlayerData } & ComponentProps<'button'>) {
-	const { addSelectedPlayer } = useStore()
+	const { addSelectedPlayer } = useLocalStorage()
 
 	if (!player) return <span {...props} />
 

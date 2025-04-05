@@ -23,7 +23,7 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 	return (
 		<div
 			className={cn(
-				'no-spoiler:hidden highlighted:sm:text-base grid pr-1 text-left text-xs transition-opacity',
+				'no-spoiler:hidden highlighted:sm:text-base highlighted:lg:text-xl grid pr-1 text-left text-xs transition-opacity',
 				interlude && 'opacity-30',
 			)}
 		>
@@ -31,6 +31,7 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 				label="P"
 				className="anim-fade-to-r [&_dt]:text-canvas [&_dt]:bg-ink"
 				player={pitcher}
+				nameType="lastName"
 				title="Pitcher"
 				key={pitcher.id}
 			>
@@ -45,6 +46,7 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 				label={battingOrder}
 				className="anim-fade-to-r [&_dt]:bg-stroke"
 				player={batter}
+				nameType="lastName"
 				title="Batter"
 				key={batter.id}
 			>
