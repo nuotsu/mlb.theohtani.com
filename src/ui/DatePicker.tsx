@@ -14,10 +14,10 @@ export default function DatePicker() {
 	}
 
 	return (
-		<div className="flex items-center gap-1">
+		<div className="mx-auto flex items-center gap-1">
 			<label>
 				<input
-					className="tabular-nums"
+					className="text-center tabular-nums"
 					type="date"
 					value={date}
 					onChange={(e) => setDate(e.target.value)}

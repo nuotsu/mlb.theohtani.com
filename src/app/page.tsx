@@ -15,7 +15,7 @@ export default function Home() {
 
 			<nav
 				className={cn(
-					'from-canvas sticky top-0 z-10 flex flex-wrap items-center justify-evenly gap-x-2 gap-y-1 bg-linear-to-b',
+					'from-canvas sticky top-0 z-10 flex flex-wrap items-center bg-linear-to-b',
 					'before:absolute before:inset-0 before:-bottom-4 before:-z-1 before:mask-b-from-25% before:mask-b-to-100% before:backdrop-blur',
 				)}
 			>
