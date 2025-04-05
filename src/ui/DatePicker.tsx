@@ -1,11 +1,11 @@
 'use client'
 
-import { useLocalStorage } from '@/lib/store'
+import { useStorage } from '@/lib/store'
 
 const TODAY = new Date().toISOString().split('T')[0]
 
 export default function DatePicker() {
-	const { date, setDate } = useLocalStorage()
+	const { date, setDate } = useStorage()
 
 	function addDay(days: number = 1) {
 		const current = new Date(date)

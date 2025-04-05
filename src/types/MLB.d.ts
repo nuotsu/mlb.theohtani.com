@@ -302,6 +302,7 @@ declare global {
 		}
 
 		interface PitchingStats extends PlayCount {
+			summary: string
 			gamesPlayed: number // int
 			gamesStarted: number // int
 			groundOuts: number // int
@@ -799,6 +800,7 @@ declare global {
 			officials: Official[]
 			info: BoxScoreInfo[]
 			pitchingNotes: string[]
+			topPerformers: (TopPerformerHitter | TopPerformerStarter)[]
 		}
 
 		interface BoxScoreTeams {
@@ -850,6 +852,21 @@ declare global {
 		interface BoxScoreInfo {
 			label: string
 			value: string
+		}
+
+		interface TopPerformer {
+			gameScore: number // int
+			player: BoxScoreTeamPlayer
+		}
+
+		interface TopPerformerHitter extends TopPerformer {
+			type: 'hitter'
+			hittingGameScore: number // int
+		}
+
+		interface TopPerformerStarter extends TopPerformer {
+			type: 'starter'
+			pitchingGameScore: number // int
 		}
 
 		interface LiveDecisions {

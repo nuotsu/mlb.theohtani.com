@@ -7,6 +7,7 @@ import Matchup from './Matchup'
 import Scheduled from './Scheduled'
 import Final from './Final'
 import Scoreboard from './Scoreboard'
+import TopPerformers from './TopPerformers'
 import GameOptions from './GameOptions'
 import { cn } from '@/lib/utils'
 
@@ -54,9 +55,12 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					</div>
 				</div>
 
-				{(isActive(detailedState) || isFinal(detailedState)) &&
-					detailedState !== 'Cancelled' &&
-					options.showScoreboard && <Scoreboard data={data} />}
+				{(isActive(detailedState) || isFinal(detailedState)) && detailedState !== 'Cancelled' && (
+					<>
+						{options.showScoreboard && <Scoreboard data={data} />}
+						{options.showTopPerformers && <TopPerformers liveData={liveData} />}
+					</>
+				)}
 
 				<GameOptions teams={gameData.teams} />
 			</article>

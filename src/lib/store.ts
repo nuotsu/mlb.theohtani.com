@@ -1,15 +1,25 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+export const useStorage = create<{
+	date: string
+	setDate: (date: string) => void
+}>((set) => ({
+	date: new Date().toLocaleDateString('en-CA', {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+	}),
+	setDate: (date) => set({ date }),
+}))
+
 type Options = {
 	showScoreboard: boolean
+	showTopPerformers: boolean
 	showColors: boolean
 }
 
 export const useLocalStorage = create<{
-	date: string
-	setDate: (date: string) => void
-
 	options: Options
 	setOptions: (options: Options) => void
 
@@ -23,15 +33,9 @@ export const useLocalStorage = create<{
 }>()(
 	persist(
 		(set) => ({
-			date: new Date().toLocaleDateString('en-CA', {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-			}),
-			setDate: (date) => set({ date }),
-
 			options: {
 				showScoreboard: false,
+				showTopPerformers: false,
 				showColors: true,
 			},
 			setOptions: (options) => set({ options }),

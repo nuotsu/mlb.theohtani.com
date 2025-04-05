@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@/lib/store'
+import { useStorage } from '@/lib/store'
 import { isFinal, isScheduled } from '@/lib/game-status'
 import { fetchPlayer } from '@/lib/mlb'
 import SelectablePlayer from '@/ui/SelectablePlayer'
@@ -8,7 +8,7 @@ export default function Scheduled({ data }: { data: MLB.LiveData }) {
 	const { datetime, probablePitchers } = data.gameData
 	const { detailedState } = data.gameData.status
 
-	const { date } = useLocalStorage()
+	const { date } = useStorage()
 	const year = new Date(date).getFullYear().toString()
 
 	return (

@@ -22,6 +22,17 @@ export default function GlobalOptions() {
 				<label>
 					<input
 						type="checkbox"
+						checked={options.showTopPerformers}
+						onChange={() =>
+							setOptions({ ...options, showTopPerformers: !options.showTopPerformers })
+						}
+					/>
+					Show top performers
+				</label>
+
+				<label>
+					<input
+						type="checkbox"
 						checked={options.showColors}
 						onChange={() => setOptions({ ...options, showColors: !options.showColors })}
 					/>

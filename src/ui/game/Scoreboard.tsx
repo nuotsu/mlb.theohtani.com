@@ -8,7 +8,7 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 	return (
 		<div
 			className={cn(
-				'no-spoiler:hidden mt-auto',
+				'no-spoiler:hidden anim-fade-to-b mt-auto',
 				innings.length > 10 && '@max-xs:overflow-fade-r overflow-x-auto @max-xs:pr-[1ch]',
 			)}
 		>

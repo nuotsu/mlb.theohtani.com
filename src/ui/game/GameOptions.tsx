@@ -1,10 +1,11 @@
 'use client'
 
-import { useLocalStorage } from '@/lib/store'
+import { useStorage, useLocalStorage } from '@/lib/store'
 import Abbreviation from '@/ui/Abbreviation'
 
 export default function GameOptions({ teams }: { teams: MLB.LiveTeams }) {
-	const { date, noSpoilers, addNoSpoiler, removeNoSpoiler } = useLocalStorage()
+	const { date } = useStorage()
+	const { noSpoilers, addNoSpoiler, removeNoSpoiler } = useLocalStorage()
 
 	return (
 		<details
