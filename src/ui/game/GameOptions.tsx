@@ -1,15 +1,17 @@
 'use client'
 
-import { useStorage, useLocalStorage } from '@/lib/store'
+import { useLocalStorage } from '@/lib/store'
 import Abbreviation from '@/ui/Abbreviation'
 
 export default function GameOptions({ teams }: { teams: MLB.LiveTeams }) {
-	const { date } = useStorage()
-	const { noSpoilers, addNoSpoiler, removeNoSpoiler } = useLocalStorage()
+	const { noSpoilers, addNoSpoiler, removeNoSpoiler, highlights, addHighlight, removeHighlight } =
+		useLocalStorage()
+
+	const teamOptions = Object.entries(teams).map(([side, team]) => team) as MLB.LiveTeam[]
 
 	return (
 		<details
-			className="open:bg-canvas/50 absolute top-0 right-0 z-10 grid place-content-center group-[:not(:hover)]/game:not-open:hidden open:inset-0 open:backdrop-blur-xs"
+			className="open:bg-canvas/50 absolute top-0 right-0 z-10 grid place-content-center text-left group-[:not(:hover)]/game:not-open:hidden open:inset-0 open:backdrop-blur-xs"
 			onMouseLeave={(e) => (e.currentTarget.open = false)}
 		>
 			<summary
@@ -19,22 +21,18 @@ export default function GameOptions({ teams }: { teams: MLB.LiveTeams }) {
 				•••
 			</summary>
 
-			<div className="anim-fade-to-r flex flex-wrap place-content-center items-center justify-evenly gap-x-2 gap-y-1">
+			<div className="anim-fade-to-r flex flex-wrap place-content-center items-center justify-evenly gap-x-4 gap-y-1">
 				<fieldset>
 					<legend className="text-xs">No spoilers</legend>
 
 					<div className="flex items-center gap-x-2">
-						{Object.entries(teams).map(([side, team]: [string, MLB.LiveTeam]) => (
-							<label key={side}>
+						{teamOptions.map((team) => (
+							<label key={team.id}>
 								<input
 									name="no-spoiler"
 									type="checkbox"
 									onChange={() => {
-										if (noSpoilers.includes(team.id)) {
-											removeNoSpoiler(team.id)
-										} else {
-											addNoSpoiler(team.id)
-										}
+										noSpoilers.includes(team.id) ? removeNoSpoiler(team.id) : addNoSpoiler(team.id)
 									}}
 									checked={noSpoilers.includes(team.id)}
 								/>
@@ -44,10 +42,25 @@ export default function GameOptions({ teams }: { teams: MLB.LiveTeams }) {
 					</div>
 				</fieldset>
 
-				<label>
-					<input name="highlight" type="checkbox" key={date} />
-					Highlight
-				</label>
+				<fieldset>
+					<legend className="text-xs">Highlight</legend>
+
+					<div className="flex items-center gap-x-2">
+						{teamOptions.map((team) => (
+							<label key={team.id}>
+								<input
+									name="highlight"
+									type="checkbox"
+									onChange={() => {
+										highlights.includes(team.id) ? removeHighlight(team.id) : addHighlight(team.id)
+									}}
+									checked={highlights.includes(team.id)}
+								/>
+								<Abbreviation team={team} />
+							</label>
+						))}
+					</div>
+				</fieldset>
 			</div>
 		</details>
 	)

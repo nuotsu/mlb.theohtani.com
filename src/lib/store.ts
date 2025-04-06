@@ -30,6 +30,10 @@ export const useLocalStorage = create<{
 	noSpoilers: number[]
 	addNoSpoiler: (teamId: number) => void
 	removeNoSpoiler: (teamId: number) => void
+
+	highlights: number[]
+	addHighlight: (teamId: number) => void
+	removeHighlight: (teamId: number) => void
 }>()(
 	persist(
 		(set) => ({
@@ -59,6 +63,14 @@ export const useLocalStorage = create<{
 				})),
 			removeNoSpoiler: (teamId) =>
 				set((state) => ({ noSpoilers: state.noSpoilers.filter((t) => t !== teamId) })),
+
+			highlights: [],
+			addHighlight: (teamId) =>
+				set((state) => ({
+					highlights: [...new Set([...state.highlights, teamId])],
+				})),
+			removeHighlight: (teamId) =>
+				set((state) => ({ highlights: state.highlights.filter((t) => t !== teamId) })),
 		}),
 		{
 			name: 'mlb-score-bug-storage',

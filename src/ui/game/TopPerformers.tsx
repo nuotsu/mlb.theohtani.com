@@ -26,6 +26,7 @@ function TopPerformer({
 			className="[&_dt]:text-stroke [&_dt]:highlighted:@lg:text-lg"
 			label={`#${jerseyNumber}`}
 			player={person}
+			nameType="lastName"
 		>
 			<div className="highlighted:@lg:text-base text-xs">
 				{performer.type === 'starter' ? stats.pitching.summary : stats.batting.summary}

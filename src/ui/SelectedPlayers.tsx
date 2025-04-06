@@ -26,7 +26,7 @@ export default function SelectedPlayers() {
 	return (
 		<aside
 			ref={ref}
-			className="sticky bottom-[env(safe-area-inset-bottom)] mt-auto flex w-full items-end gap-1 overflow-x-auto before:m-auto empty:hidden"
+			className="sticky bottom-[env(safe-area-inset-bottom)] mt-auto flex w-full snap-x items-end gap-1 overflow-x-auto before:m-auto empty:hidden"
 		>
 			{selectedPlayers?.map((player) => <PlayerDetails player={player} key={player.id} />)}
 		</aside>

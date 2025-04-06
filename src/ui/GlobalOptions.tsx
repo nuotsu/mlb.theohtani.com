@@ -13,7 +13,7 @@ export default function GlobalOptions() {
 			<summary className="relative z-1 block">•••</summary>
 
 			<div className="anim-fade-to-b absolute top-full right-0 -mt-4 min-w-max pt-4">
-				<div className="bg-canvas/50 flex flex-col border backdrop-blur-xs">
+				<div className="bg-canvas/50 flex flex-col border p-1 backdrop-blur-xs">
 					<label>
 						<input
 							type="checkbox"
