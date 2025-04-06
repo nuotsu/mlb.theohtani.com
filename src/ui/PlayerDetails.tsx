@@ -16,8 +16,8 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 	const { lastName, primaryNumber } = hitting
 
 	const [pitchingStat, hittingStat] = [
-		pitching.stats?.[0].splits.at(-1)?.stat as MLB.PitchingStats,
-		hitting.stats?.[0].splits.at(-1)?.stat as MLB.BattingStats,
+		pitching.stats?.[0].splits.at(-1)?.stat as MLB.PitchingStats | undefined,
+		hitting.stats?.[0].splits.at(-1)?.stat as MLB.BattingStats | undefined,
 	]
 
 	const isPitcher = pitching.primaryPosition.abbreviation === 'P'
@@ -63,13 +63,13 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 						</tr>
 						<tr>
 							<td>
-								{pitchingStat.wins}-{pitchingStat.losses}
+								{pitchingStat?.wins}-{pitchingStat?.losses}
 							</td>
-							<td>{pitchingStat.era}</td>
-							<td>{pitchingStat.saves}</td>
-							<td>{pitchingStat.inningsPitched}</td>
-							<td>{pitchingStat.strikeOuts}</td>
-							<td>{pitchingStat.whip}</td>
+							<td>{pitchingStat?.era}</td>
+							<td>{pitchingStat?.saves}</td>
+							<td>{pitchingStat?.inningsPitched}</td>
+							<td>{pitchingStat?.strikeOuts}</td>
+							<td>{pitchingStat?.whip}</td>
 						</tr>
 					</SyncedTable>
 				) : (
@@ -88,17 +88,17 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 							<th>OPS</th>
 						</tr>
 						<tr>
-							<td>{hittingStat.avg}</td>
-							<td>{hittingStat.hits}</td>
-							<td>{hittingStat.doubles}</td>
-							<td>{hittingStat.triples}</td>
-							<td>{hittingStat.homeRuns}</td>
-							<td>{hittingStat.runs}</td>
-							<td>{hittingStat.rbi}</td>
-							<td>{hittingStat.stolenBases}</td>
-							<td>{hittingStat.slg}</td>
-							<td>{hittingStat.obp}</td>
-							<td>{hittingStat.ops}</td>
+							<td>{hittingStat?.avg}</td>
+							<td>{hittingStat?.hits}</td>
+							<td>{hittingStat?.doubles}</td>
+							<td>{hittingStat?.triples}</td>
+							<td>{hittingStat?.homeRuns}</td>
+							<td>{hittingStat?.runs}</td>
+							<td>{hittingStat?.rbi}</td>
+							<td>{hittingStat?.stolenBases}</td>
+							<td>{hittingStat?.slg}</td>
+							<td>{hittingStat?.obp}</td>
+							<td>{hittingStat?.ops}</td>
 						</tr>
 					</SyncedTable>
 				)}
