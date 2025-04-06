@@ -40,7 +40,7 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 				<Abbreviation
 					className={cn(
 						'not-highlighted:m-auto',
-						isActive(detailedState) && offense && 'font-bold',
+						isActive(detailedState) && offense && 'not-no-spoiler:font-bold',
 					)}
 					team={team}
 				/>
