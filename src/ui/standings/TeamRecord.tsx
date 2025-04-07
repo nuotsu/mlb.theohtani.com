@@ -19,7 +19,7 @@ export default function TeamRecord({ record }: { record: MLB.StandingsTeamRecord
 		<tr className={cn(noSpoiler && 'opacity-50')} data-no-spoiler={noSpoiler || undefined}>
 			<th className="flex items-center gap-1" title={team.name}>
 				{options.showColors && (
-					<TeamLogo className="anim-fade-to-r w-6 shrink-0" team={record.team} size={48} />
+					<TeamLogo className="anim-fade-to-r w-6 shrink-0" team={record.team} size={96} />
 				)}
 				{team.abbreviation}
 			</th>
