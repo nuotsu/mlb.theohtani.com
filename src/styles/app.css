@@ -103,6 +103,6 @@
 
 	&::before {
 		content: '';
-		@apply absolute inset-0 -bottom-4 -z-1 mask-b-from-25% mask-b-to-100% backdrop-blur;
+		@apply pointer-events-none absolute inset-0 -bottom-4 -z-1 mask-b-from-25% mask-b-to-100% backdrop-blur;
 	}
 }

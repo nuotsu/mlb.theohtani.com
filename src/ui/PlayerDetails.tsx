@@ -30,7 +30,7 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 			<summary className="flex items-center gap-1 p-1 pr-0 group-not-open:pl-2">
 				<span className="group-open:hidden">{lastName}</span>
 
-				<figure className="w-12 group-not-open:hidden">
+				<figure className="w-12 shrink-0 group-not-open:hidden">
 					<img
 						src={`https://midfield.mlbstatic.com/v1/people/${player.id}/spots/120`}
 						alt=""

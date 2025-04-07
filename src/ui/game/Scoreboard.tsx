@@ -48,14 +48,21 @@ function Row({
 	const { innings, inningState } = liveData?.linescore
 	const { detailedState } = gameData.status
 	const offense =
-		(inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home')
+		isActive(detailedState) &&
+		((inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home'))
 
 	return (
 		<tr>
 			<th className="bg-canvas sticky left-0 min-w-[4ch] font-normal">
-				<Abbreviation className="block w-full border-r" team={gameData.teams[side]} />
+				<Abbreviation
+					className={cn(
+						'block w-full border-r',
+						offense && 'group-has-[[data-scoring]]/game:animate-pulse',
+					)}
+					team={gameData.teams[side]}
+				/>
 
-				{isActive(detailedState) && offense && (
+				{offense && (
 					<span className="absolute top-1/2 left-0 grid size-[0.4em] -translate-1/2 rotate-45 bg-current" />
 				)}
 			</th>

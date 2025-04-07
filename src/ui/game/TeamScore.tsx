@@ -1,5 +1,6 @@
 import { useLocalStorage } from '@/lib/store'
 import { isActive, isScheduled } from '@/lib/game-status'
+import TeamLogo from '@/ui/TeamLogo'
 import Abbreviation from '@/ui/Abbreviation'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
@@ -15,17 +16,23 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 
 	const { inningState } = liveData?.linescore
 	const offense =
-		(inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home')
+		isActive(detailedState) &&
+		((inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home'))
 
 	return (
 		<div className="group/team relative flex w-[4ch] shrink-0 flex-col overflow-hidden">
 			{options.showColors && (
-				<figure className="overflow-hidden" title={team.name}>
-					<img
-						className={cn('anim-fade-to-b aspect-[3] w-full scale-110 object-cover')}
-						src={`https://midfield.mlbstatic.com/v1/team/${team.id}/spots/288`}
-						draggable={false}
-						alt=""
+				<figure
+					className={cn(
+						'overflow-hidden transition-opacity',
+						!offense && isActive(detailedState) && 'not-no-spoiler:opacity-60',
+					)}
+					title={team.name}
+				>
+					<TeamLogo
+						className="anim-fade-to-b aspect-[3] w-full scale-110 object-cover"
+						team={team}
+						size={288}
 					/>
 				</figure>
 			)}
@@ -38,7 +45,12 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 				)}
 			>
 				<Abbreviation
-					className={cn(isActive(detailedState) && offense && 'not-no-spoiler:font-bold')}
+					className={cn(
+						'transition-opacity',
+						offense
+							? 'group-has-[[data-scoring]]/game:animate-pulse'
+							: isActive(detailedState) && 'not-no-spoiler:opacity-60',
+					)}
 					team={team}
 				/>
 
