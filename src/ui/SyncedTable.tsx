@@ -5,8 +5,12 @@ import { cn } from '@/lib/utils'
 
 export default function SyncedTable({
 	identifier,
+	cellCount,
 	children,
-}: { identifier: string } & ComponentProps<'table'>) {
+}: {
+	identifier: string
+	cellCount: number
+} & ComponentProps<'table'>) {
 	const ref = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
@@ -27,7 +31,7 @@ export default function SyncedTable({
 		return () => ref.current?.removeEventListener('scroll', handleScroll)
 	}, [ref])
 
-	const css = Array.from({ length: 11 })
+	const css = Array.from({ length: cellCount })
 		.map(
 			(_, i) =>
 				`body:has([data-identifier="${identifier}"] :is(th, td):nth-child(${i + 1}):hover) [data-identifier="${identifier}"] :is(th, td):nth-child(${i + 1}) {

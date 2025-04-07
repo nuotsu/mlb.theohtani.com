@@ -14,7 +14,7 @@ export default function Scheduled({ data }: { data: MLB.LiveData }) {
 	return (
 		<div
 			className={cn(
-				'highlighted:sm:text-lg my-auto',
+				'my-auto',
 				!isScheduled(detailedState) && 'hidden',
 				!isFinal(detailedState) && 'no-spoiler:block',
 			)}
@@ -28,7 +28,7 @@ export default function Scheduled({ data }: { data: MLB.LiveData }) {
 			</p>
 
 			{(probablePitchers.away || probablePitchers.home) && (
-				<div className="highlighted:sm:text-lg grid grid-cols-[1fr_auto_1fr] items-start gap-1 text-xs leading-tight">
+				<div className="grid grid-cols-[1fr_auto_1fr] items-start gap-1 text-xs leading-tight">
 					<ProbalePitcher pitcher={probablePitchers.away} year={year} />
 					vs
 					<ProbalePitcher pitcher={probablePitchers.home} year={year} />

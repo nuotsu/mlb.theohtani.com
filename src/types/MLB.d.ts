@@ -564,7 +564,11 @@ declare global {
 		}
 
 		interface Records {
-			// TODO: idk what this is, it's empty
+			splitRecords: FullLeagueRecord[]
+			divisionRecords: FullLeagueRecord[]
+			overallRecords: FullLeagueRecord[]
+			leagueRecords: FullLeagueRecord[]
+			extendedRecords: FullLeagueRecord[]
 		}
 
 		interface LiveMatchData {
@@ -893,6 +897,51 @@ declare global {
 			sport: Sport
 			gameType: string
 			numTeams?: number // int
+		}
+
+		// standings
+
+		interface Standings extends RootResponse {
+			records: StandingsRecord[]
+		}
+
+		interface StandingsRecord {
+			standingsType: string
+			league: IdentifiableObject
+			division: IdentifiableObject
+			sport: IdentifiableObject
+			lastUpdated: string // date
+			teamRecords: StandingsTeamRecord[]
+		}
+
+		interface StandingsTeamRecord extends LiveRecord {
+			team: NameableObject
+			season: string
+			streak: {
+				streakType: string
+				streakNumber: number // int
+				streakCode: string
+			}
+			divisionRank: string
+			leagueRank: string
+			sportRank: string
+			runsAllowed: number // int
+			runsScored: number // int
+			divisionChamp: boolean
+			divisionLeader: boolean
+			wildCardLeader: boolean
+			hasWildcard: boolean
+			clinched: boolean
+			eliminationNumber: string
+			eliminationNumberSport: string
+			eliminationNumberLeague: string
+			eliminationNumberDivision: string
+			eliminationNumberConference: string
+			wildCardEliminationNumber: string
+			wins: number // int
+			losses: number // int
+			runDifferential: number // int
+			winningPercentage: string // 0-1 float as a string; can be ".---" if unavailable
 		}
 	}
 }

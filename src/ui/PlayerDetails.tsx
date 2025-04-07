@@ -52,7 +52,7 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 
 			<div>
 				{isPitcher ? (
-					<SyncedTable identifier="pitching-stats">
+					<SyncedTable identifier="pitching-stats" cellCount={6}>
 						<tr>
 							<th>W-L</th>
 							<th>ERA</th>
@@ -73,9 +73,10 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 						</tr>
 					</SyncedTable>
 				) : (
-					<SyncedTable identifier="hitting-stats">
+					<SyncedTable identifier="hitting-stats" cellCount={12}>
 						<tr>
 							<th>AVG</th>
+							<th>AB</th>
 							<th>H</th>
 							<th>2B</th>
 							<th>3B</th>
@@ -89,6 +90,7 @@ export default function PlayerDetails({ player }: { player: MLB.BasicPlayerData 
 						</tr>
 						<tr>
 							<td>{hittingStat?.avg}</td>
+							<td>{hittingStat?.atBats}</td>
 							<td>{hittingStat?.hits}</td>
 							<td>{hittingStat?.doubles}</td>
 							<td>{hittingStat?.triples}</td>

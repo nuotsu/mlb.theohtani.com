@@ -23,7 +23,7 @@ export default function Matchup({ liveData }: { liveData: MLB.LiveMatchData }) {
 	return (
 		<div
 			className={cn(
-				'no-spoiler:hidden highlighted:sm:text-base highlighted:lg:text-xl grid pr-1 text-left text-xs transition-opacity',
+				'no-spoiler:hidden grid pr-1 text-left text-xs transition-opacity',
 				interlude && 'opacity-30',
 			)}
 		>

@@ -1,7 +1,8 @@
 import DatePicker from '@/ui/DatePicker'
 import Icon from '@/ui/Icon'
 import GlobalOptions from '@/ui/GlobalOptions'
-import Schedule from '@/ui/Schedule'
+import Schedule from '@/ui/game/Schedule'
+import Standings from '@/ui/standings/Standings'
 import SelectedPlayers from '@/ui/SelectedPlayers'
 import { cn } from '@/lib/utils'
 
@@ -13,14 +14,10 @@ export default function Home() {
 				<h1>MLB Score Bug</h1>
 			</header>
 
-			<nav
-				className={cn(
-					'from-canvas sticky top-0 z-10 flex flex-wrap items-center bg-linear-to-b',
-					'before:absolute before:inset-0 before:-bottom-4 before:-z-1 before:mask-b-from-25% before:mask-b-to-100% before:backdrop-blur',
-				)}
-			>
+			<nav className={cn('blur-gradient sticky top-0 z-10 flex flex-wrap items-center')}>
 				<DatePicker />
 				<GlobalOptions />
+				<Standings />
 			</nav>
 
 			<Schedule />

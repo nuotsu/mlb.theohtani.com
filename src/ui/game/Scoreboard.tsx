@@ -12,7 +12,7 @@ export default function Scoreboard({ data }: { data: MLB.LiveData }) {
 				innings.length > 10 && '@max-xs:overflow-fade-r overflow-x-auto @max-xs:pr-[1ch]',
 			)}
 		>
-			<table className="highlighted:sm:text-lg w-auto max-w-none min-w-full table-fixed text-xs whitespace-nowrap">
+			<table className="w-auto max-w-none min-w-full table-fixed text-xs whitespace-nowrap">
 				<thead>
 					<tr>
 						<td className="bg-canvas sticky left-0" />

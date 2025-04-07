@@ -2,7 +2,7 @@
 
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/mlb'
-import Game from './game/Game'
+import Game from './Game'
 
 export default function Schedule() {
 	const { date } = useStorage()

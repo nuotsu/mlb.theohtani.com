@@ -10,7 +10,7 @@ export default function GlobalOptions() {
 			className="group absolute top-1/2 right-0 -translate-y-1/2"
 			onMouseLeave={(e) => (e.currentTarget.open = false)}
 		>
-			<summary className="relative z-1 block">•••</summary>
+			<summary className="relative z-1 block p-1">•••</summary>
 
 			<div className="anim-fade-to-b absolute top-full right-0 -mt-4 min-w-max pt-4">
 				<div className="bg-canvas/50 flex flex-col border p-1 backdrop-blur-xs">
@@ -20,7 +20,7 @@ export default function GlobalOptions() {
 							checked={options.showScoreboard}
 							onChange={() => setOptions({ ...options, showScoreboard: !options.showScoreboard })}
 						/>
-						Show scoreboard
+						Scoreboard
 					</label>
 
 					<label>
@@ -31,7 +31,7 @@ export default function GlobalOptions() {
 								setOptions({ ...options, showTopPerformers: !options.showTopPerformers })
 							}
 						/>
-						Show top performers
+						Top performers
 					</label>
 
 					<label>
@@ -40,7 +40,7 @@ export default function GlobalOptions() {
 							checked={options.showColors}
 							onChange={() => setOptions({ ...options, showColors: !options.showColors })}
 						/>
-						Show colors
+						Colors
 					</label>
 				</div>
 			</div>

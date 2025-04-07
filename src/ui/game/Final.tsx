@@ -13,7 +13,7 @@ export default function Final({ data }: { data: MLB.LiveData }) {
 		<div className="flex flex-col">
 			<p className="my-auto">{detailedState}</p>
 
-			<dl className="no-spoiler:hidden highlighted:@lg:text-base gap-x-1 text-xs @xs:columns-2 [&_dd]:grow-0">
+			<dl className="no-spoiler:hidden gap-x-1 text-xs @xs:columns-2 [&_dd]:grow-0">
 				{winner && (
 					<MiniPlayer
 						className="[&_dt]:text-canvas [&_dt]:bg-ink"

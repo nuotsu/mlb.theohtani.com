@@ -18,7 +18,7 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 		(inningState === 'Top' && side === 'away') || (inningState === 'Bottom' && side === 'home')
 
 	return (
-		<div className="group/team highlighted:sm:text-xl highlighted:sm:w-[6ch] highlighted:lg:w-[10ch] relative flex w-[4ch] shrink-0 flex-col overflow-hidden">
+		<div className="group/team relative flex w-[4ch] shrink-0 flex-col overflow-hidden">
 			{options.showColors && (
 				<figure className="overflow-hidden" title={team.name}>
 					<img
@@ -32,35 +32,23 @@ export default function TeamScore({ data, side }: { data: MLB.LiveData; side: 'h
 
 			<div
 				className={cn(
-					'highlighted:lg:flex no-spoiler:grow relative grid items-center justify-center gap-x-2',
+					'no-spoiler:grow relative grid items-center justify-center gap-x-2',
 					options.showColors && 'grow',
 					isScheduled(detailedState) && 'my-auto',
 				)}
 			>
 				<Abbreviation
-					className={cn(
-						'not-highlighted:m-auto',
-						isActive(detailedState) && offense && 'not-no-spoiler:font-bold',
-					)}
+					className={cn(isActive(detailedState) && offense && 'not-no-spoiler:font-bold')}
 					team={team}
 				/>
 
-				<small
-					className={cn(
-						'text-stroke anim-fade-to-r bg-canvas absolute inset-0 place-content-center group-[:not(:hover)]/team:hidden',
-						'highlighted:lg:static highlighted:lg:block',
-						'no-spoiler:hidden!',
-					)}
-				>
+				<small className="text-stroke anim-fade-to-r bg-canvas no-spoiler:hidden! absolute inset-0 place-content-center group-[:not(:hover)]/team:hidden">
 					{wins}-{losses}
 				</small>
 			</div>
 
 			{!isScheduled(detailedState) && (
-				<div
-					className="no-spoiler:hidden highlighted:sm:text-3xl m-auto text-lg font-bold"
-					data-score
-				>
+				<div className="no-spoiler:hidden m-auto text-lg font-bold" data-score>
 					<Flip disable={!isActive(detailedState)}>{runs}</Flip>
 				</div>
 			)}
