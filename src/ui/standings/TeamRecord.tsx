@@ -7,6 +7,8 @@ export default function TeamRecord({ record }: { record: MLB.StandingsTeamRecord
 	const { data } = fetchMLBLive<{ teams: MLB.Team[] }>(record.team.link) ?? {}
 	const [team] = data?.teams ?? []
 
+	if (!team) return null
+
 	return (
 		<tr>
 			<th className="flex items-center gap-1" title={team.name}>
