@@ -8,9 +8,23 @@ export default function CurrentPlay({ play }: { play: string }) {
 	const scoring = ['homers', 'scores'].some((type) => play?.includes(type)) || undefined
 
 	useEffect(() => {
-		// if (play) notify()
+		if (!('Notification' in window)) return
 
-		if (play.includes('homers')) notify()
+		Notification.requestPermission().then((permission) => {
+			if (permission !== 'granted') return
+
+			if (play)
+				new Notification('Test', {
+					body: 'testing notification',
+					// icon: '/favicon.ico',
+				})
+
+			if (play.includes('homers'))
+				new Notification('Test', {
+					body: 'Someone just hit a home run!',
+					icon: '/favicon.ico',
+				})
+		})
 	}, [play])
 
 	return (
@@ -23,21 +37,4 @@ export default function CurrentPlay({ play }: { play: string }) {
 			key={play}
 		/>
 	)
-}
-
-function notify() {
-	if (!('Notification' in window)) {
-		console.log('This browser does not support notifications')
-	}
-
-	Notification.requestPermission().then((permission) => {
-		console.log({ permission })
-
-		if (permission !== 'granted') return
-
-		new Notification('Test', {
-			body: 'Someone just hit a home run!',
-			icon: '/favicon.ico',
-		})
-	})
 }
