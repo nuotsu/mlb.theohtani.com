@@ -3,6 +3,7 @@ import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc'
 
 export default function CurrentInning({ linescore }: { linescore: MLB.LiveLineScore }) {
 	const { inningState, currentInning, currentInningOrdinal } = linescore
+	const interlude = ['Middle', 'End'].includes(inningState)
 
 	return (
 		<div
@@ -16,7 +17,7 @@ export default function CurrentInning({ linescore }: { linescore: MLB.LiveLineSc
 				/>
 			</span>
 
-			{currentInning}
+			<span className={cn(interlude && 'text-stroke/50')}>{currentInning}</span>
 		</div>
 	)
 }
