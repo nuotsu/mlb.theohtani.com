@@ -1,6 +1,7 @@
 'use client'
 
 import { useStorage } from '@/lib/store'
+import { useEffect } from 'react'
 
 export default function CurrentPlay({ play }: { play: string }) {
 	if (!play) return null
@@ -8,11 +9,13 @@ export default function CurrentPlay({ play }: { play: string }) {
 	const scoring = ['homers', 'scores'].some((type) => play?.includes(type)) || undefined
 	const { notificationPermission } = useStorage()
 
-	if (notificationPermission === 'granted' && play.includes('homers')) {
-		new Notification('Home Run Alert', {
-			body: 'Home Run!',
-		})
-	}
+	useEffect(() => {
+		if (notificationPermission === 'granted' && play.includes('homers')) {
+			new Notification('Home Run Alert', {
+				body: 'Home Run!',
+			})
+		}
+	}, [play])
 
 	return (
 		// @ts-ignore
