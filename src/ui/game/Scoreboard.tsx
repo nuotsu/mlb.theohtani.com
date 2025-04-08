@@ -45,7 +45,7 @@ function Row({
 	liveData: MLB.LiveMatchData
 	side: 'away' | 'home'
 }) {
-	const { innings, inningState } = liveData?.linescore
+	const { innings, inningState, currentInning } = liveData?.linescore
 	const { detailedState } = gameData.status
 	const offense =
 		isActive(detailedState) &&
@@ -70,7 +70,18 @@ function Row({
 			{Array.from({ length: Math.max(9, innings.length) }).map((_, i) => {
 				const { runs } = innings[i]?.[side] ?? {}
 				const calledEarly = isFinal(detailedState) && side === 'home' && i >= 8 && isNaN(runs)
-				return <td key={i}>{calledEarly ? 'x' : runs}</td>
+				const current = currentInning - 1 === i && isActive(detailedState) && offense
+				return (
+					<td
+						className={cn(
+							current &&
+								'before:bg-stroke/50 relative before:absolute before:inset-x-1 before:inset-y-0 before:-z-1',
+						)}
+						key={i}
+					>
+						{calledEarly ? 'x' : runs}
+					</td>
+				)
 			})}
 
 			<td className="border-l">

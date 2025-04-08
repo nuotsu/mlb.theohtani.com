@@ -10,7 +10,7 @@ export default function CurrentPlay({ play }: { play: string }) {
 
 	if (notificationPermission === 'granted' && play.includes('homers')) {
 		new Notification('Home Run Alert', {
-			body: 'Someone hit a home run!',
+			body: 'Home Run!',
 		})
 	}
 
