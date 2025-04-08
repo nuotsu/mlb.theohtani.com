@@ -6,11 +6,11 @@ export default function OutCount({ linescore }: { linescore: MLB.LiveLineScore }
 	const interlude = ['Middle', 'End'].includes(inningState)
 
 	return (
-		<div className="flex gap-[3px]" title={interlude ? undefined : count(outs, 'out')}>
+		<div className="grid grid-cols-3 gap-px" title={interlude ? undefined : count(outs, 'out')}>
 			{Array.from({ length: 3 }).map((_, i) => (
 				<span
 					className={cn(
-						'inline-block size-[.4em] rounded-full transition-opacity',
+						'inline-block aspect-square h-[.5em] scale-90 rounded-full transition-opacity',
 						interlude ? 'bg-stroke/50' : i >= outs ? 'border-stroke border' : 'bg-current',
 					)}
 					key={i}

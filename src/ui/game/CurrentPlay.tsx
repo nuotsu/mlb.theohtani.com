@@ -12,7 +12,7 @@ export default function CurrentPlay({ play }: { play: string }) {
 	useEffect(() => {
 		if (notificationPermission === 'granted' && play.includes('homers')) {
 			new Notification('Home Run Alert', {
-				body: 'Home Run!',
+				body: 'Someone hit it out of the park!',
 			})
 		}
 	}, [play])

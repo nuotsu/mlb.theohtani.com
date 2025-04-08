@@ -17,7 +17,7 @@ export default function NotificationsOption() {
 			/>
 
 			{(notificationPermission === 'granted' || notificationPermission === 'denied') &&
-				'Enable notifications'}
+				'Enable HR Alerts'}
 
 			{notificationPermission === 'default' && (
 				<button
@@ -31,7 +31,7 @@ export default function NotificationsOption() {
 						})
 					}}
 				>
-					Enable notifications
+					Enable HR Alerts
 				</button>
 			)}
 		</label>

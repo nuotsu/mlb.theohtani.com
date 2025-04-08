@@ -3,13 +3,15 @@ import Abbreviation from '@/ui/Abbreviation'
 import { cn } from '@/lib/utils'
 
 export default function Scoreboard({ data }: { data: MLB.LiveData }) {
-	const { currentInning, innings } = data.liveData.linescore
+	const { inningState, currentInning, innings } = data.liveData.linescore
+	const interlude = ['Middle', 'End'].includes(inningState)
 
 	return (
 		<div
 			className={cn(
-				'no-spoiler:hidden anim-fade-to-b mt-auto',
+				'no-spoiler:hidden anim-fade-to-b mt-auto transition-colors',
 				innings.length > 10 && '@max-xs:overflow-fade-r overflow-x-auto @max-xs:pr-[1ch]',
+				interlude && 'text-stroke',
 			)}
 		>
 			<table className="w-auto max-w-none min-w-full table-fixed text-xs whitespace-nowrap">
@@ -70,12 +72,13 @@ function Row({
 			{Array.from({ length: Math.max(9, innings.length) }).map((_, i) => {
 				const { runs } = innings[i]?.[side] ?? {}
 				const calledEarly = isFinal(detailedState) && side === 'home' && i >= 8 && isNaN(runs)
-				const current = currentInning - 1 === i && isActive(detailedState) && offense
+				const current = currentInning - 1 === i && offense
+
 				return (
 					<td
 						className={cn(
 							current &&
-								'before:bg-stroke/50 relative before:absolute before:inset-x-1 before:inset-y-0 before:-z-1',
+								'before:bg-stroke/50 relative before:absolute before:inset-x-1 before:inset-y-0 before:-z-1 before:transition-colors',
 						)}
 						key={i}
 					>
