@@ -1,6 +1,7 @@
 'use client'
 
 import { useLocalStorage } from '@/lib/store'
+import NotificationsOption from './NotificationsOption'
 
 export default function GlobalOptions() {
 	const { options, setOptions } = useLocalStorage()
@@ -42,6 +43,8 @@ export default function GlobalOptions() {
 						/>
 						Colors
 					</label>
+
+					<NotificationsOption />
 				</div>
 			</div>
 		</details>

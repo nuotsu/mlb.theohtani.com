@@ -4,6 +4,9 @@ import { persist } from 'zustand/middleware'
 export const useStorage = create<{
 	date: string
 	setDate: (date: string) => void
+
+	notificationPermission: NotificationPermission
+	setNotificationPermission: (permission: NotificationPermission) => void
 }>((set) => ({
 	date: new Date().toLocaleDateString('en-CA', {
 		year: 'numeric',
@@ -11,6 +14,9 @@ export const useStorage = create<{
 		day: '2-digit',
 	}),
 	setDate: (date) => set({ date }),
+
+	notificationPermission: 'default',
+	setNotificationPermission: (permission) => set({ notificationPermission: permission }),
 }))
 
 type Options = {

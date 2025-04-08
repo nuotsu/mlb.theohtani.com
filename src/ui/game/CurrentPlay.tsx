@@ -1,31 +1,18 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useStorage } from '@/lib/store'
 
 export default function CurrentPlay({ play }: { play: string }) {
 	if (!play) return null
 
 	const scoring = ['homers', 'scores'].some((type) => play?.includes(type)) || undefined
+	const { notificationPermission } = useStorage()
 
-	useEffect(() => {
-		if (!('Notification' in window)) return
-
-		Notification.requestPermission().then((permission) => {
-			if (permission !== 'granted') return
-
-			if (play)
-				new Notification('Test', {
-					body: 'testing notification',
-					// icon: '/favicon.ico',
-				})
-
-			if (play.includes('homers'))
-				new Notification('Test', {
-					body: 'Someone just hit a home run!',
-					icon: '/favicon.ico',
-				})
+	if (notificationPermission === 'granted' && play.includes('homers')) {
+		new Notification('Home Run Alert', {
+			body: 'Someone hit a home run!',
 		})
-	}, [play])
+	}
 
 	return (
 		// @ts-ignore
