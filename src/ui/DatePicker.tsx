@@ -13,7 +13,7 @@ export default function DatePicker() {
 		setDate(current.toISOString().split('T')[0])
 	}
 
-	const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'long' })
+	const dayOfWeek = new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long' })
 
 	return (
 		<div className="mx-auto flex flex-col items-center">
